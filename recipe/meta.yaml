@@ -10,7 +10,7 @@ source:
   md5: 28c9ebd1abfb9b4a07cb87005f285edd
 
 build:
-  script: python setup.py install
+  script: python -m pip install --no-deps .
   number: 0
   entry_points:
     - ipython = IPython:start_ipython
@@ -20,6 +20,7 @@ build:
 requirements:
   build:
     - python
+    - pip
   run:
     - python
     - pickleshare
