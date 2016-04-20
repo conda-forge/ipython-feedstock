@@ -1,4 +1,4 @@
-{% set version = "4.1.2" %}
+{% set version = "4.2.0" %}
 
 package:
   name: ipython
@@ -6,8 +6,8 @@ package:
 
 source:
   fn: ipython-{{ version }}.tar.gz
-  url: https://pypi.python.org/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  md5: 28c9ebd1abfb9b4a07cb87005f285edd
+  url: https://pypi.python.org/packages/4e/c7/519b95112dba6f3ae91530bcb8564454c575fcb1fdb323b2b0ee9eff1227/ipython-{{ version }}.tar.gz
+  md5: 9c7c28eddbc39eb874d2c22025772d63
 
 build:
   script: python -m pip install --no-deps .
@@ -27,7 +27,7 @@ requirements:
     - simplegeneric >0.8
 # These are listed in the setup.py, but do not cause the build tests to fail.
 # In order to enable these dependencies, additional tests will need to be defined.
-#    - prompt_toolkit >=0.60 
+#    - prompt_toolkit >=0.60
 #    - pygments
 #    - shutil_get_terminal_size
     - decorator
@@ -35,6 +35,7 @@ requirements:
     - pexpect              # [unix]
     - appnope              # [osx]
     - pyreadline           # [win]
+    - backports.shutil_get_terminal_size
 
 test:
   commands:
