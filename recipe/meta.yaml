@@ -11,7 +11,7 @@ source:
 
 build:
   script: python -m pip install --no-deps .
-  number: 0
+  number: 1
   entry_points:
     - ipython = IPython:start_ipython
     - ipython2 = IPython:start_ipython  # [py2k]
@@ -24,12 +24,11 @@ requirements:
   run:
     - python
     - pickleshare
-    - simplegeneric >0.8
+    - python-simplegeneric >0.8
 # These are listed in the setup.py, but do not cause the build tests to fail.
 # In order to enable these dependencies, additional tests will need to be defined.
 #    - prompt_toolkit >=0.60
 #    - pygments
-#    - shutil_get_terminal_size
     - decorator
     - traitlets
     - pexpect              # [unix]
