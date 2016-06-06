@@ -29,7 +29,7 @@ requirements:
 # In order to enable these dependencies, additional tests will need to be defined.
 #    - prompt_toolkit >=0.60
 #    - pygments
-    - decorator
+    - python-decorator
     - traitlets
     - pexpect              # [unix]
     - appnope              # [osx]
