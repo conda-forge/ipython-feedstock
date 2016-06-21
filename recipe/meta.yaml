@@ -11,7 +11,7 @@ source:
 
 build:
   script: python -m pip install --no-deps .
-  number: 1
+  number: 2
   entry_points:
     - ipython = IPython:start_ipython
     - ipython2 = IPython:start_ipython  # [py2k]
