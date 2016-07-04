@@ -1,4 +1,4 @@
-{% set version = "4.2.0" %}
+{% set version = "4.2.1" %}
 
 package:
   name: ipython
@@ -6,12 +6,12 @@ package:
 
 source:
   fn: ipython-{{ version }}.tar.gz
-  url: https://pypi.python.org/packages/4e/c7/519b95112dba6f3ae91530bcb8564454c575fcb1fdb323b2b0ee9eff1227/ipython-{{ version }}.tar.gz
-  md5: 9c7c28eddbc39eb874d2c22025772d63
+  url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
+  sha256: e21c3d7f410014b04d36fe12998f132ed9ef4c6119b81016c04eedb09f0716a5
 
 build:
+  number: 0
   script: python -m pip install --no-deps .
-  number: 2
   entry_points:
     - ipython = IPython:start_ipython
     - ipython2 = IPython:start_ipython  # [py2k]
@@ -24,7 +24,7 @@ requirements:
   run:
     - python
     - pickleshare
-    - python-simplegeneric >0.8
+    - simplegeneric >0.8
 # These are listed in the setup.py, but do not cause the build tests to fail.
 # In order to enable these dependencies, additional tests will need to be defined.
 #    - prompt_toolkit >=0.60
@@ -55,3 +55,4 @@ extra:
     - jakirkham
     - pelson
     - minrk
+    - ocefpaf
