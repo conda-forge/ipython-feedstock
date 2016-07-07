@@ -10,7 +10,7 @@ source:
   sha256: e21c3d7f410014b04d36fe12998f132ed9ef4c6119b81016c04eedb09f0716a5
 
 build:
-  number: 0
+  number: 1
   script: python -m pip install --no-deps .
   entry_points:
     - ipython = IPython:start_ipython
@@ -29,7 +29,7 @@ requirements:
 # In order to enable these dependencies, additional tests will need to be defined.
 #    - prompt_toolkit >=0.60
 #    - pygments
-    - python-decorator
+    - decorator
     - traitlets
     - pexpect              # [unix]
     - appnope              # [osx]
