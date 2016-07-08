@@ -1,4 +1,4 @@
-{% set version = "4.2.1" %}
+{% set version = "5.0.0" %}
 
 package:
   name: ipython
@@ -7,10 +7,10 @@ package:
 source:
   fn: ipython-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: e21c3d7f410014b04d36fe12998f132ed9ef4c6119b81016c04eedb09f0716a5
+  sha256: 7ec0737169c74056c7fc8298246db5478a2d6c90cfd19c3253222112357545df
 
 build:
-  number: 1
+  number: 0
   script: python -m pip install --no-deps .
   entry_points:
     - ipython = IPython:start_ipython
@@ -25,10 +25,8 @@ requirements:
     - python
     - pickleshare
     - simplegeneric >0.8
-# These are listed in the setup.py, but do not cause the build tests to fail.
-# In order to enable these dependencies, additional tests will need to be defined.
-#    - prompt_toolkit >=0.60
-#    - pygments
+    - prompt_toolkit >=1.0.3,<2.0.0
+    - pygments
     - decorator
     - traitlets
     - pexpect              # [unix]
