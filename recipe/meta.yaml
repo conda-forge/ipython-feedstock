@@ -29,11 +29,14 @@ requirements:
     - pygments
     - decorator
     - traitlets
-    - pexpect              # [unix]
-    - appnope              # [osx]
-    - pyreadline           # [win]
+    - pexpect  # [unix]
+    - pyreadline  # [win]
     - backports.shutil_get_terminal_size
-    - python.app           # [osx]
+    - python.app  # [osx]
+    - pathlib2  # [py2k]
+    - appnope  # [osx]
+    - colorama  # [win]
+    - win_unicode_console >=0.5  # [win]
 
 test:
   commands:
