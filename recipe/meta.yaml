@@ -49,6 +49,7 @@ test:
 about:
   home: http://ipython.org/
   license: BSD 3-clause
+  license_file: COPYING.rst
   summary: "IPython: Productive Interactive Computing"
 
 extra:
