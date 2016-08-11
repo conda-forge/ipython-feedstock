@@ -10,7 +10,7 @@ source:
   sha256: 7ec0737169c74056c7fc8298246db5478a2d6c90cfd19c3253222112357545df
 
 build:
-  number: 0
+  number: 1
   script: python -m pip install --no-deps .
   entry_points:
     - ipython = IPython:start_ipython
@@ -49,6 +49,7 @@ test:
 about:
   home: http://ipython.org/
   license: BSD 3-clause
+  license_file: COPYING.rst
   summary: "IPython: Productive Interactive Computing"
 
 extra:
