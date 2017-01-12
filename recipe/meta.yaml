@@ -10,7 +10,7 @@ source:
   sha256: 7ef4694e1345913182126b219aaa4a0047e191af414256da6772cf249571b961
 
 build:
-  number: 1
+  number: 2
   script: python -m pip install --no-deps .
   entry_points:
     - ipython = IPython:start_ipython
@@ -30,8 +30,7 @@ requirements:
     - decorator
     - traitlets
     - pexpect  # [unix]
-    - backports.shutil_get_terminal_size
-    - python.app  # [osx]
+    - backports.shutil_get_terminal_size  # [py2k]
     - pathlib2  # [py2k]
     - appnope  # [osx]
     - colorama  # [win]
