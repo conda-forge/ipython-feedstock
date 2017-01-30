@@ -1,4 +1,4 @@
-{% set version = "5.1.0" %}
+{% set version = "5.2.0" %}
 
 package:
   name: ipython
@@ -7,10 +7,10 @@ package:
 source:
   fn: ipython-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 7ef4694e1345913182126b219aaa4a0047e191af414256da6772cf249571b961
+  sha256: d043ac22f360a329b9f1e1ce68905339b76460d373579224c071ee52b6120231
 
 build:
-  number: 2
+  number: 0
   script: python -m pip install --no-deps .
   entry_points:
     - ipython = IPython:start_ipython
@@ -25,7 +25,7 @@ requirements:
     - python
     - pickleshare
     - simplegeneric >0.8
-    - prompt_toolkit >=1.0.3,<2.0.0
+    - prompt_toolkit >=1.0.4,<2.0.0
     - pygments
     - decorator
     - traitlets
@@ -34,7 +34,7 @@ requirements:
     - pathlib2  # [py2k]
     - appnope  # [osx]
     - colorama  # [win]
-    - win_unicode_console >=0.5  # [win]
+    - win_unicode_console >=0.5  # [win and py<36]
 
 test:
   commands:
