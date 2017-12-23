@@ -10,7 +10,7 @@ source:
   sha256: 51c158a6c8b899898d1c91c6b51a34110196815cc905f9be0fa5878e19355608
 
 build:
-  number: 0
+  number: 1
   script: python -m pip install --no-deps .
   skip: True  # [py2k]
   entry_points:
@@ -28,7 +28,7 @@ requirements:
     - prompt_toolkit >=1.0.4,<2.0.0
     - pygments
     - decorator
-    - traitlets
+    - traitlets >=4.2
     - jedi >=0.10
     - pexpect  # [unix]
     - appnope  # [osx]
