@@ -34,6 +34,7 @@ requirements:
     - appnope  # [osx]
     - colorama  # [win]
     - win_unicode_console >=0.5  # [win and py<36]
+    - backcall
 
 test:
   commands:
