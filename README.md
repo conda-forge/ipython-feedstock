@@ -14,14 +14,16 @@ Summary: IPython: Productive Interactive Computing
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/ipython-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/ipython-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/ipython-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/ipython-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/ipython-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/ipython-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/ipython-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/ipython-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/ipython-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/ipython-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/ipython-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/ipython-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/ipython/badges/version.svg)](https://anaconda.org/conda-forge/ipython)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/ipython/badges/downloads.svg)](https://anaconda.org/conda-forge/ipython)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ipython-green.svg)](https://anaconda.org/conda-forge/ipython) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ipython.svg)](https://anaconda.org/conda-forge/ipython) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ipython.svg)](https://anaconda.org/conda-forge/ipython) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ipython.svg)](https://anaconda.org/conda-forge/ipython) |
 
 Installing ipython
 ==================
