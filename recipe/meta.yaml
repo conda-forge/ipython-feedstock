@@ -18,7 +18,7 @@ build:
     - ipython3 = IPython:start_ipython  # [py3k]
 
 requirements:
-  build:
+  host:
     - python
     - pip
   run:
