@@ -49,12 +49,12 @@ about:
   license: BSD 3-clause
   license_file: COPYING.rst
   summary: "IPython: Productive Interactive Computing"
-  home: http://ipython.org/
+  home: https://ipython.org/
   description: |
     IPython provides a rich architecture for interactive computing with
     a powerful interactive shell, a kernel for Jupyter, high performance
     tools for parallel computing, and more.
-  doc_url: http://ipython.org/documentation.html
+  doc_url: https://ipython.org/documentation.html
   dev_url: https://github.com/ipython/ipython
 
 extra:
