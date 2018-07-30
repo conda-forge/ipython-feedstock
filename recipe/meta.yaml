@@ -73,7 +73,7 @@ about:
     IPython provides a rich architecture for interactive computing with
     a powerful interactive shell, a kernel for Jupyter, high performance
     tools for parallel computing, and more.
-  doc_url: https://ipython.org/documentation.html
+  doc_url: https://ipython.readthedocs.io/
   dev_url: https://github.com/ipython/ipython
 
 extra:
