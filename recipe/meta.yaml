@@ -15,10 +15,10 @@ build:
   skip: True  # [py2k]
   entry_points:
     - ipython = IPython:start_ipython
-    - ipython3 = IPython:start_ipython  # [py3k]
+    - ipython3 = IPython:start_ipython
 
 requirements:
-  build:
+  host:
     - python
     - pip
   run:
@@ -42,12 +42,39 @@ test:
     - ipython3 -h          # [py3k]
   imports:
     - IPython
+    - IPython
+    - IPython.core
+    - IPython.core.magics
+    - IPython.core.tests
+    - IPython.extensions
+    - IPython.extensions.tests
+    - IPython.external
+    - IPython.external.decorators
+    - IPython.lib
+    - IPython.lib.tests
+    - IPython.sphinxext
+    - IPython.terminal
+    - IPython.terminal.pt_inputhooks
+    - IPython.terminal.tests
+    - IPython.testing
+    - IPython.testing.plugin
+    - IPython.testing.tests
+    - IPython.utils
+    - IPython.utils.tests
 
 about:
   home: https://ipython.org/
   license: BSD 3-clause
+  license_family: BSD
   license_file: COPYING.rst
   summary: "IPython: Productive Interactive Computing"
+  home: https://ipython.org/
+  description: |
+    IPython provides a rich architecture for interactive computing with
+    a powerful interactive shell, a kernel for Jupyter, high performance
+    tools for parallel computing, and more.
+  doc_url: https://ipython.readthedocs.io/
+  dev_url: https://github.com/ipython/ipython
 
 extra:
   recipe-maintainers:
