@@ -5,13 +5,12 @@ package:
   version: {{ version }}
 
 source:
-  fn: ipython-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
   sha256: b0f2ef9eada4a68ef63ee10b6dde4f35c840035c50fd24265f8052c98947d5a4
 
 build:
   number: 0
-  script: python -m pip install --no-deps .
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   skip: True  # [py2k]
   entry_points:
     - ipython = IPython:start_ipython
@@ -68,7 +67,6 @@ about:
   license_family: BSD
   license_file: COPYING.rst
   summary: "IPython: Productive Interactive Computing"
-  home: https://ipython.org/
   description: |
     IPython provides a rich architecture for interactive computing with
     a powerful interactive shell, a kernel for Jupyter, high performance
