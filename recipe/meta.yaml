@@ -18,7 +18,7 @@ build:
     - ipython3 = IPython:start_ipython  # [py3k]
 
 requirements:
-  build:
+  host:
     - python
     - pip
   run:
@@ -49,6 +49,13 @@ about:
   license: BSD 3-clause
   license_file: COPYING.rst
   summary: "IPython: Productive Interactive Computing"
+  home: https://ipython.org/
+  description: |
+    IPython provides a rich architecture for interactive computing with
+    a powerful interactive shell, a kernel for Jupyter, high performance
+    tools for parallel computing, and more.
+  doc_url: https://ipython.readthedocs.io/
+  dev_url: https://github.com/ipython/ipython
 
 extra:
   recipe-maintainers:
