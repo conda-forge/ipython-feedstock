@@ -18,13 +18,13 @@ build:
 
 requirements:
   host:
-    - python
+    - python >=3.4
     - pip
   run:
-    - python
+    - python >=3.4
     - pickleshare
     - simplegeneric >0.8
-    - prompt_toolkit >=1.0.4,<2.0.0
+    - prompt_toolkit >=2.0.0
     - pygments
     - decorator
     - traitlets >=4.2
@@ -78,6 +78,8 @@ extra:
   recipe-maintainers:
     - Carreau
     - jakirkham
+    - fperez
+    - ellisonbg
     - minrk
     - ocefpaf
     - pelson
