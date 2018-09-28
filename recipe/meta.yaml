@@ -73,7 +73,7 @@ test:
     - ipython -h
     - ipython3 -h
     - NOSE_EXCLUDE=test_history iptest -j{{ CPU_COUNT }}  # [unix]
-    - iptest -j{{ CPU_COUNT }}
+    - iptest -j{{ CPU_COUNT }}  # [win]
 
 about:
   home: https://ipython.org/
