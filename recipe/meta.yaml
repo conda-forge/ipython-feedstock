@@ -20,8 +20,8 @@ build:
 
 requirements:
   host:
-    - python
     - pip
+    - python
   run:
     - appnope  # [osx]
     - backcall
@@ -39,7 +39,7 @@ requirements:
 
 test:
   requires:
-    - curio
+    - curio  # [unix]
     - ipykernel
     - nbformat
     - nose>=0.10.1
