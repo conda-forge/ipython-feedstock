@@ -1,4 +1,4 @@
-{% set version = "6.5.0" %}
+{% set version = "7.0.1" %}
 
 package:
   name: ipython
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: b0f2ef9eada4a68ef63ee10b6dde4f35c840035c50fd24265f8052c98947d5a4
+  sha256: 9fed506c3772c875a3048bc134a25e6f5e997b1569b2636f6a5d891f34cbfd46
 
 build:
   number: 0
@@ -15,32 +15,41 @@ build:
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
+    - iptest = IPython.testing.iptestcontroller:main
+    - iptest3 = IPython.testing.iptestcontroller:main
 
 requirements:
   host:
-    - python
     - pip
-  run:
     - python
-    - pickleshare
-    - simplegeneric >0.8
-    - prompt_toolkit >=1.0.4,<2.0.0
-    - pygments
+  run:
+    - appnope  # [osx]
+    - backcall
+    - colorama  # [win]
     - decorator
-    - traitlets >=4.2
     - jedi >=0.10
     - pexpect  # [unix]
-    - appnope  # [osx]
-    - colorama  # [win]
+    - pickleshare
+    - prompt_toolkit >=2.0.0
+    - pygments
+    - python
+    - simplegeneric >0.8
+    - traitlets >=4.2
     - win_unicode_console >=0.5  # [win and py<36]
-    - backcall
 
 test:
-  commands:
-    - ipython -h
-    - ipython3 -h          # [py3k]
+  requires:
+    - curio  # [unix]
+    - ipykernel
+    - nbformat
+    - nose>=0.10.1
+    - numpy
+    - pygments
+    - requests
+    - testpath
+    - trio
+    - matplotlib
   imports:
-    - IPython
     - IPython
     - IPython.core
     - IPython.core.magics
@@ -60,12 +69,17 @@ test:
     - IPython.testing.tests
     - IPython.utils
     - IPython.utils.tests
+  commands:
+    - ipython -h
+    - ipython3 -h
+    - NOSE_EXCLUDE=test_history iptest -j{{ CPU_COUNT }}  # [unix]
+    - iptest -j{{ CPU_COUNT }}  # [win]
 
 about:
   home: https://ipython.org/
-  license: BSD 3-clause
+  license: BSD-3-Clause
   license_family: BSD
-  license_file: COPYING.rst
+  license_file: LICENSE
   summary: "IPython: Productive Interactive Computing"
   description: |
     IPython provides a rich architecture for interactive computing with
@@ -78,7 +92,11 @@ extra:
   recipe-maintainers:
     - Carreau
     - jakirkham
+    - fperez
+    - ellisonbg
     - minrk
     - ocefpaf
     - pelson
     - takluyver
+    - bollwyvl
+    - blink1073
