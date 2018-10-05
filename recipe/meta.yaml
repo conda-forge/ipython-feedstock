@@ -22,6 +22,7 @@ requirements:
   host:
     - pip
     - python
+    - readline
   run:
     - appnope  # [osx]
     - backcall
