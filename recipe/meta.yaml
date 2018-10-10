@@ -9,7 +9,7 @@ source:
   sha256: 9fed506c3772c875a3048bc134a25e6f5e997b1569b2636f6a5d891f34cbfd46
 
 build:
-  number: 0
+  number: 1000
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   skip: True  # [py2k]
   entry_points:
@@ -72,8 +72,7 @@ test:
   commands:
     - ipython -h
     - ipython3 -h
-    - NOSE_EXCLUDE=test_history iptest -j{{ CPU_COUNT }}  # [unix]
-    - iptest -j{{ CPU_COUNT }}  # [win]
+    - NOSE_EXCLUDE="test_history|recursion" iptest  # [unix]
 
 about:
   home: https://ipython.org/
