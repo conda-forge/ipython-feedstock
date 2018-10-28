@@ -33,7 +33,6 @@ requirements:
     - prompt_toolkit >=2.0.0
     - pygments
     - python
-    - simplegeneric >0.8
     - traitlets >=4.2
     - win_unicode_console >=0.5  # [win and py<36]
 
