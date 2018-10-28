@@ -1,4 +1,4 @@
-{% set version = "7.1.0" %}
+{% set version = "7.1.1" %}
 
 package:
   name: ipython
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 1dd701942069f9daad956ebf3d5ddc10cec886001b1702d95b8d0d50a57648c3
+  sha256: b10a7ddd03657c761fc503495bc36471c8158e3fc948573fb9fe82a7029d8efd
 
 build:
   number: 1000
