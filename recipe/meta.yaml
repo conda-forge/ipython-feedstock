@@ -9,8 +9,8 @@ source:
   sha256: 6a9496209b76463f1dec126ab928919aaf1f55b38beb9219af3fe202f6bbdd12
 
 build:
-  number: 1000
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  number: 1001
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   skip: True  # [py2k]
   entry_points:
     - ipython = IPython:start_ipython
@@ -72,6 +72,8 @@ test:
     - ipython -h
     - ipython3 -h
     - NOSE_EXCLUDE="test_history|recursion" iptest  # [unix]
+  downstreams:
+    - ipykernel
 
 about:
   home: https://ipython.org/
