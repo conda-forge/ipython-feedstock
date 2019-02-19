@@ -1,4 +1,4 @@
-{% set version = "7.2.0" %}
+{% set version = "7.3.0" %}
 
 package:
   name: ipython
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 6a9496209b76463f1dec126ab928919aaf1f55b38beb9219af3fe202f6bbdd12
+  sha256: 06de667a9e406924f97781bda22d5d76bfb39762b678762d86a466e63f65dc39
 
 build:
-  number: 1000
+  number: 0
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   skip: True  # [py2k]
   entry_points:
