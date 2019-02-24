@@ -41,7 +41,7 @@ test:
     - curio  # [unix]
     - ipykernel
     - nbformat
-    - nose>=0.10.1
+    - nose >=0.10.1
     - numpy
     - pygments
     - requests
