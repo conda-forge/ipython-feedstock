@@ -9,7 +9,7 @@ source:
   sha256: 06de667a9e406924f97781bda22d5d76bfb39762b678762d86a466e63f65dc39
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   skip: True  # [py2k]
   entry_points:
@@ -35,11 +35,11 @@ requirements:
     - python
     - traitlets >=4.2
     - win_unicode_console >=0.5  # [win and py<36]
+    - ipykernel
 
 test:
   requires:
     - curio  # [unix]
-    - ipykernel
     - nbformat
     - nose>=0.10.1
     - numpy
