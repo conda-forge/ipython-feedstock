@@ -46,8 +46,8 @@ test:
     - pygments
     - requests
     - testpath
-    - trio
-    - matplotlib
+    - trio   # [not (aarch64 or ppc64le)]
+    - matplotlib  # [not (aarch64 or ppc64le)]
   imports:
     - IPython
     - IPython.core
