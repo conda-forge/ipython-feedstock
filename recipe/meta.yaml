@@ -39,15 +39,15 @@ requirements:
 test:
   requires:
     - curio  # [unix]
-    - ipykernel
+    - ipykernel  # [not (aarch64 or ppc64le)]
     - nbformat
     - nose>=0.10.1
     - numpy
     - pygments
     - requests
     - testpath
-    - trio
-    - matplotlib
+    - trio   # [not (aarch64 or ppc64le)]
+    - matplotlib  # [not (aarch64 or ppc64le)]
   imports:
     - IPython
     - IPython.core
@@ -71,7 +71,7 @@ test:
   commands:
     - ipython -h
     - ipython3 -h
-    - NOSE_EXCLUDE="test_history|recursion" iptest  # [unix]
+    - NOSE_EXCLUDE="test_history|recursion" iptest  # [unix and not (aarch64 or ppc64le)]
 
 about:
   home: https://ipython.org/
