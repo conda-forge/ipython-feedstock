@@ -39,15 +39,16 @@ requirements:
 test:
   requires:
     - curio  # [unix]
-    - ipykernel  # [not (aarch64 or ppc64le)]
     - nbformat
-    - nose>=0.10.1
+    - nose >=0.10.1
     - numpy
     - pygments
     - requests
     - testpath
-    - trio   # [not (aarch64 or ppc64le)]
     - matplotlib  # [not (aarch64 or ppc64le)]
+    # We should uncomment the deps below as soon as the python 3.8 migration is done.
+    # - ipykernel  # [not (aarch64 or ppc64le)]
+    # - trio   # [not (aarch64 or ppc64le)]
   imports:
     - IPython
     - IPython.core
@@ -71,7 +72,8 @@ test:
   commands:
     - ipython -h
     - ipython3 -h
-    - NOSE_EXCLUDE="test_history|recursion" iptest  # [unix and not (aarch64 or ppc64le)]
+    # [unix and not (aarch64 or ppc64le)]
+    - NOSE_EXCLUDE="test_history|recursion" iptest
 
 about:
   home: https://ipython.org/
