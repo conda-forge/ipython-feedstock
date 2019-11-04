@@ -45,10 +45,10 @@ test:
     - pygments
     - requests
     - testpath
-    - matplotlib  # [not (aarch64 or ppc64le)]
     # We should uncomment the deps below as soon as the python 3.8 migration is done.
     # - ipykernel  # [not (aarch64 or ppc64le)]
     # - trio   # [not (aarch64 or ppc64le)]
+    # - matplotlib  # [not (aarch64 or ppc64le)]
   imports:
     - IPython
     - IPython.core
