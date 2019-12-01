@@ -1,4 +1,4 @@
-{% set version = "7.10.0" %}
+{% set version = "7.10.1" %}
 
 package:
   name: ipython
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: e468b8f03a0168a667982b50f0b4e0828cc32721bbea32b23934e55b7970eb7a
+  sha256: f186b01b36609e0c5d0de27c7ef8e80c990c70478f8c880863004b3489a9030e
 
 build:
   number: 0
@@ -30,7 +30,7 @@ requirements:
     - jedi >=0.10
     - pexpect  # [unix]
     - pickleshare
-    - prompt_toolkit >=2.0.0,<4
+    - prompt_toolkit >=2.0.0,<4,!=3.0.0,!=3.0.1
     - pygments
     - python
     - traitlets >=4.2
