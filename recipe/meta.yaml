@@ -10,7 +10,7 @@ source:
   sha256: 4bac649857611baaaf76bc82c173aa542f7486446c335fe1a6c05d0d491c8906
 
 build:
-  number: 0
+  number: 1
   script: python -m pip install --no-deps .
   entry_points:
     - ipython = IPython:start_ipython
