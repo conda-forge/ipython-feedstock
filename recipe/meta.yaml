@@ -34,6 +34,7 @@ requirements:
     - pygments
     - python
     - traitlets >=4.2
+    - setuptools >=18.5
 
 test:
   requires:
@@ -44,10 +45,10 @@ test:
     - pygments
     - requests
     - testpath
-    # We should uncomment the deps below as soon as the python 3.8 migration is done.
-    # - ipykernel  # [not (aarch64 or ppc64le)]
-    # - trio   # [not (aarch64 or ppc64le)]
-    # - matplotlib  # [not (aarch64 or ppc64le)]
+    - ipykernel
+    - trio
+    - matplotlib
+    - pip
   imports:
     - IPython
     - IPython.core
@@ -71,11 +72,11 @@ test:
   commands:
     - ipython -h
     - ipython3 -h
-    # [unix and not (aarch64 or ppc64le)]
     - NOSE_EXCLUDE="test_history|recursion" iptest
+    - python -m pip check
 
 about:
-  home: https://ipython.org/
+  home: https://ipython.org
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
@@ -84,7 +85,7 @@ about:
     IPython provides a rich architecture for interactive computing with
     a powerful interactive shell, a kernel for Jupyter, high performance
     tools for parallel computing, and more.
-  doc_url: https://ipython.readthedocs.io/
+  doc_url: https://ipython.readthedocs.io
   dev_url: https://github.com/ipython/ipython
 
 extra:
