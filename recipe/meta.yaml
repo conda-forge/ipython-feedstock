@@ -9,7 +9,7 @@ source:
   sha256: d9459e7237e2e5858738ff9c3e26504b79899b58a6d49e574d352493d80684c6
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   skip: True  # [py<36]
   entry_points:
@@ -47,7 +47,7 @@ test:
     - testpath
     - ipykernel
     - trio
-    - matplotlib
+    - matplotlib-base
     - pip
   imports:
     - IPython
