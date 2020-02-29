@@ -1,7 +1,7 @@
 About ipython
 =============
 
-Home: https://ipython.org/
+Home: https://ipython.org
 
 Package license: BSD-3-Clause
 
