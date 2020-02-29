@@ -39,9 +39,9 @@ requirements:
 # generally failing
 {% set nose_exclude = "recursion" %}
 {% set nose_exclude = nose_exclude ~ "|test_history" %}  # [not win]
-{% set nose_exclude = nose_exclude ~ "|system_interrupt" %}  # [aarch64 or ppc64le]
+# https://github.com/ipython/ipython/issues/12164
+{% set nose_exclude = nose_exclude ~ "|system_interrupt" %}  # [linux]
 {% set nose_exclude = nose_exclude ~ "|home_dir_3|home_dir_5|store_restore|storemagic" %}  # [win]
-
 
 test:
   requires:
