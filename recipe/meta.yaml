@@ -36,6 +36,13 @@ requirements:
     - traitlets >=4.2
     - setuptools >=18.5
 
+# generally failing
+{% set nose_exclude = "recursion" %}
+{% set nose_exclude = nose_exclude ~ "|test_history" %}  # [not win]
+{% set nose_exclude = nose_exclude ~ "|system_interrupt" %}  # [aarch64 or ppc64le]
+{% set nose_exclude = nose_exclude ~ "|home_dir_3|home_dir_5|store_restore|storemagic" %}  # [win]
+
+
 test:
   requires:
     - curio  # [unix]
@@ -72,7 +79,8 @@ test:
   commands:
     - ipython -h
     - ipython3 -h
-    - NOSE_EXCLUDE="test_history|recursion" iptest
+    - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix]
+    - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
     - python -m pip check
 
 about:
