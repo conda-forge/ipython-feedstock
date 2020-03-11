@@ -9,7 +9,7 @@ source:
   sha256: ca478e52ae1f88da0102360e57e528b92f3ae4316aabac80a2cd7f7ab2efb48a
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
   skip: true  # [py<36]
   entry_points:
