@@ -45,17 +45,17 @@ requirements:
 
 test:
   requires:
-    - nbformat
-    - nose >=0.10.1
-    - pygments
-    - requests
-    - testpath
     # TODO: restore after pypy migration
-    # - numpy
     # - curio  # [unix]
     # - ipykernel
-    # - trio
     # - matplotlib
+    # - nbformat
+    # - nose >=0.10.1
+    # - numpy
+    # - pygments
+    # - requests
+    # - testpath
+    # - trio
     - pip
   imports:
     - IPython
