@@ -52,7 +52,8 @@ test:
     - pygments
     - requests
     - testpath
-    - ipykernel
+    # TODO: restore after pypy migration
+    # - ipykernel
     - trio
     - matplotlib
     - pip
@@ -79,8 +80,9 @@ test:
   commands:
     - ipython -h
     - ipython3 -h
-    - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix]
-    - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
+    # TODO: restore after pypy migration
+    # - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix]
+    # - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
     - python -m pip check
 
 about:
