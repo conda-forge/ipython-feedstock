@@ -1,4 +1,4 @@
-{% set version = "7.15.0" %}
+{% set version = "7.16.1" %}
 
 package:
   name: ipython
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 0ef1433879816a960cd3ae1ae1dc82c64732ca75cec8dab5a4e29783fb571d0e
+  sha256: 9f4fcb31d3b2c533333893b9172264e4821c1ac91839500f31bd43f2c59b3ccf
 
 build:
   number: 0
@@ -45,17 +45,16 @@ requirements:
 
 test:
   requires:
-    # TODO: restore after pypy migration
-    # - curio  # [unix]
-    # - ipykernel
-    # - matplotlib
-    # - nbformat
-    # - nose >=0.10.1
-    # - numpy
-    # - pygments
-    # - requests
-    # - testpath
-    # - trio
+    - curio  # [unix]
+    - ipykernel
+    - matplotlib  # [python_impl == 'cpython']
+    - nbformat
+    - nose >=0.10.1
+    - numpy
+    - pygments
+    - requests
+    - testpath
+    - trio
     - pip
   imports:
     - IPython
@@ -80,9 +79,8 @@ test:
   commands:
     - ipython -h
     - ipython3 -h
-    # TODO: restore after pypy migration
-    # - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix]
-    # - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
+    - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix and python_impl == 'cpython']
+    - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
     - python -m pip check
 
 about:
