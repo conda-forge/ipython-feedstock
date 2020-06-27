@@ -45,17 +45,16 @@ requirements:
 
 test:
   requires:
-    # TODO: restore after pypy migration
-    # - curio  # [unix]
-    # - ipykernel
-    # - matplotlib
-    # - nbformat
-    # - nose >=0.10.1
-    # - numpy
-    # - pygments
-    # - requests
-    # - testpath
-    # - trio
+    - curio  # [unix]
+    - ipykernel
+    - matplotlib
+    - nbformat
+    - nose >=0.10.1
+    - numpy
+    - pygments
+    - requests
+    - testpath
+    - trio
     - pip
   imports:
     - IPython
@@ -80,9 +79,8 @@ test:
   commands:
     - ipython -h
     - ipython3 -h
-    # TODO: restore after pypy migration
-    # - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix]
-    # - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
+    - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix]
+    - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
     - python -m pip check
 
 about:
