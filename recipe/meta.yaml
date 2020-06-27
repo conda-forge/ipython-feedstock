@@ -47,7 +47,7 @@ test:
   requires:
     - curio  # [unix]
     - ipykernel
-    - matplotlib
+    - matplotlib  # [python_impl == 'cpython']
     - nbformat
     - nose >=0.10.1
     - numpy
@@ -79,7 +79,7 @@ test:
   commands:
     - ipython -h
     - ipython3 -h
-    - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix]
+    - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix and python_impl == 'cpython']
     - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
     - python -m pip check
 
