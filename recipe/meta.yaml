@@ -54,7 +54,7 @@ test:
     - pygments
     - requests
     - testpath
-    - trio
+   #- trio
     - pip
   imports:
     - IPython
