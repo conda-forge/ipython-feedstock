@@ -1,4 +1,4 @@
-{% set version = "7.18.0" %}
+{% set version = "7.18.1" %}
 
 package:
   name: ipython
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 4dbacf73ac7409c33c918044476eefe4c2428ce0ca4cc118aee718ac6026ac0f
+  sha256: a331e78086001931de9424940699691ad49dfb457cea31f5471eae7b78222d5e
 
 build:
   number: 0
@@ -27,7 +27,7 @@ requirements:
     - backcall
     - colorama  # [win]
     - decorator
-    - jedi >=0.16
+    - jedi >=0.10
     - pexpect >4.3  # [unix]
     - pickleshare
     - prompt-toolkit !=3.0.0,!=3.0.1,<3.1.0,>=2.0.0
