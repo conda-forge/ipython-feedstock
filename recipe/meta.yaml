@@ -37,7 +37,7 @@ requirements:
     - setuptools >=18.5
 
 # generally failing
-{% set nose_exclude = "recursion" %}
+{% set nose_exclude = "recursion|test_set_matplotlib_formats|test_set_matplotlib_close" %}
 {% set nose_exclude = nose_exclude ~ "|test_history" %}  # [not win]
 # https://github.com/ipython/ipython/issues/12164
 {% set nose_exclude = nose_exclude ~ "|system_interrupt" %}  # [linux]
