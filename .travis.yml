@@ -15,7 +15,7 @@ matrix:
       os: linux
       arch: ppc64le
 
-    - env: CONFIG=linux_ppc64le_numpy1.18python3.9.____cpythonpython_implcpython UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=condaforge/linux-anvil-ppc64le
+    - env: CONFIG=linux_ppc64le_numpy1.19python3.9.____cpythonpython_implcpython UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=condaforge/linux-anvil-ppc64le
       os: linux
       arch: ppc64le
 

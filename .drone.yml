@@ -62,7 +62,7 @@ steps:
 
 ---
 kind: pipeline
-name: linux_aarch64_numpy1.18python3.9.___h6198feaaee
+name: linux_aarch64_numpy1.19python3.9.___hb72e2bb7de
 
 platform:
   os: linux
@@ -72,7 +72,7 @@ steps:
 - name: Install and build
   image: condaforge/linux-anvil-aarch64
   environment:
-    CONFIG: linux_aarch64_numpy1.18python3.9.____cpythonpython_implcpython
+    CONFIG: linux_aarch64_numpy1.19python3.9.____cpythonpython_implcpython
     UPLOAD_PACKAGES: True
     PLATFORM: linux-aarch64
     BINSTAR_TOKEN:
