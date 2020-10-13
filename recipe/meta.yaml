@@ -1,5 +1,8 @@
 {% set version = "7.18.1" %}
 
+# set to the name of the migration, or "" for normal business
+{% set building_on_new_platform = "py38" %}
+
 package:
   name: ipython
   version: {{ version }}
@@ -10,7 +13,7 @@ source:
 
 build:
   number: 1
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
   skip: true  # [py<37]
   entry_points:
     - ipython = IPython:start_ipython
@@ -45,18 +48,19 @@ requirements:
 
 test:
   requires:
-    - curio  # [unix]
-    # circular dependencies ipython <-> ipykernel need commenting on new Python versions #
-    # - ipykernel
-    - matplotlib  # [python_impl == 'cpython']
     - nbformat
     - nose >=0.10.1
-    - numpy
-    - pygments
+    - pip
     - requests
     - testpath
+    # would _ideally_ in the block below, but messes with re-rendering
+    - numpy
+    {% if not building_on_new_platform %}
+    - curio  # [unix]
+    - ipykernel
+    - matplotlib-base
     - trio
-    - pip
+    {% endif %}
   imports:
     - IPython
     - IPython.core
@@ -78,11 +82,11 @@ test:
     - IPython.utils
     - IPython.utils.tests
   commands:
+    - python -m pip check
     - ipython -h
     - ipython3 -h
     - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix and python_impl == 'cpython']
     - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
-    - python -m pip check
 
 about:
   home: https://ipython.org
