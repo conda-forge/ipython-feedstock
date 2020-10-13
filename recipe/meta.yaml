@@ -1,7 +1,6 @@
 {% set version = "7.18.1" %}
-
-# set to the name of the migration, or "" for normal business
-{% set building_on_new_platform = "py38" %}
+{% set building_on_new_platform = False %}
+{% set building_on_new_platform = True %}  # [py==3.9]
 
 package:
   name: ipython
@@ -82,7 +81,7 @@ test:
     - IPython.utils
     - IPython.utils.tests
   commands:
-    - python -m pip check
+    - pip check
     - ipython -h
     - ipython3 -h
     - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix and python_impl == 'cpython']
