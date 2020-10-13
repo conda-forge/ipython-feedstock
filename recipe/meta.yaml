@@ -48,7 +48,7 @@ test:
     - curio  # [unix]
     # circular dependencies ipython <-> ipykernel need commenting on new Python versions #
     # - ipykernel
-    - matplotlib  # [python_impl == 'cpython']
+    - matplotlib-base  # [python_impl == 'cpython']
     - nbformat
     - nose >=0.10.1
     - numpy
