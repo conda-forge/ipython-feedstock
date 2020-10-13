@@ -53,7 +53,7 @@ test:
     - pip
     - requests
     - testpath
-    # would _ideally_ in the block below, but messes with re-rendering
+    # would _ideally_ be in the block below, but messes with re-rendering
     - numpy
     {% if not building_on_new_platform %}
     - curio  # [unix]
