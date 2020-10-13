@@ -46,8 +46,6 @@ requirements:
 test:
   requires:
     - curio  # [unix]
-    # circular dependencies ipython <-> ipykernel need commenting on new Python versions #
-    # - ipykernel
     - matplotlib-base  # [python_impl == 'cpython']
     - nbformat
     - nose >=0.10.1
@@ -55,8 +53,10 @@ test:
     - pygments
     - requests
     - testpath
-    - trio
     - pip
+    - trio
+    # circular dependencies ipython <-> ipykernel need commenting on new Python versions #
+    # - ipykernel
   imports:
     - IPython
     - IPython.core
