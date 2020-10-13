@@ -1,6 +1,6 @@
 {% set version = "7.18.1" %}
 {% set building_on_new_platform = False %}
-{% set building_on_new_platform = True %}  # [py==3.9]
+{% set building_on_new_platform = True %}  # [py==39]
 
 package:
   name: ipython
