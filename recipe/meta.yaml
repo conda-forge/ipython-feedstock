@@ -9,7 +9,7 @@ source:
   sha256: a331e78086001931de9424940699691ad49dfb457cea31f5471eae7b78222d5e
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [py<37]
   entry_points:
@@ -37,7 +37,7 @@ requirements:
     - setuptools >=18.5
 
 # generally failing
-{% set nose_exclude = "recursion" %}
+{% set nose_exclude = "recursion|test_set_matplotlib_formats|test_set_matplotlib_close" %}
 {% set nose_exclude = nose_exclude ~ "|test_history" %}  # [not win]
 # https://github.com/ipython/ipython/issues/12164
 {% set nose_exclude = nose_exclude ~ "|system_interrupt" %}  # [linux]
@@ -46,16 +46,17 @@ requirements:
 test:
   requires:
     - curio  # [unix]
-    - ipykernel
-    - matplotlib  # [python_impl == 'cpython']
+    - matplotlib-base  # [python_impl == 'cpython']
     - nbformat
     - nose >=0.10.1
     - numpy
     - pygments
     - requests
     - testpath
-    - trio
     - pip
+    - trio
+    # circular dependencies ipython <-> ipykernel need commenting on new Python versions #
+    # - ipykernel
   imports:
     - IPython
     - IPython.core
