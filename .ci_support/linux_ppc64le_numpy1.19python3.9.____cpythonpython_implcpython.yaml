@@ -1,3 +1,5 @@
+cdt_name:
+- cos7
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -17,6 +19,6 @@ python_impl:
 target_platform:
 - linux-ppc64le
 zip_keys:
-- - numpy
-  - python
+- - python
+  - numpy
   - python_impl
