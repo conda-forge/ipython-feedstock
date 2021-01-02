@@ -10,7 +10,7 @@ source:
 
 build:
   number: 1
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
   skip: true  # [py<36]
   entry_points:
     - ipython = IPython:start_ipython
