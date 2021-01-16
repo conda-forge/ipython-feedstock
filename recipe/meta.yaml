@@ -9,7 +9,7 @@ source:
   sha256: cbb2ef3d5961d44e6a963b9817d4ea4e1fa2eb589c371a470fed14d8d40cbd6a
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv --no-deps
   skip: true  # [py<37]
   entry_points:
@@ -48,6 +48,13 @@ requirements:
 {% set nose_exclude = nose_exclude ~ "|home_dir_3|home_dir_5|store_restore|storemagic" %}  # [win]
 
 test:
+  # TODO: remove after ipykernel cycle is broken
+  {% if python_impl == 'pypy' %}
+  requires:
+    - pip
+  commands:
+    - pip check
+  {% else %}
   requires:
     - curio  # [unix]
     - matplotlib-base  # [python_impl == 'cpython']
@@ -86,6 +93,7 @@ test:
     - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix and python_impl == 'cpython']
     - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
     - python -m pip check
+  {% endif %}
 
 about:
   home: https://ipython.org
