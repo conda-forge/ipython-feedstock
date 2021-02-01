@@ -39,18 +39,10 @@ requirements:
     - traitlets >=4.2
     - setuptools >=18.5
 
-# generally failing
-{% set nose_exclude = "recursion" %}
-{% set nose_exclude = nose_exclude ~ "|test_history" %}  # [not win]
-# https://github.com/ipython/ipython/issues/12164
-{% set nose_exclude = nose_exclude ~ "|system_interrupt" %}  # [linux]
-{% set nose_exclude = nose_exclude ~ "|home_dir_3|home_dir_5|store_restore|storemagic" %}  # [win]
-{% set nose_exclude = nose_exclude ~ "|check_complete|xdel|doctest_reset_del|ultratb|AudioData" %}  # [python_impl == 'cpython']
-
 test:
   requires:
     - curio  # [unix]
-    - matplotlib-base  # [python_impl == 'cpython']
+    - matplotlib-base
     - nbformat
     - nose >=0.10.1
     - numpy
@@ -81,11 +73,11 @@ test:
     - IPython.utils
     - IPython.utils.tests
   commands:
+    - pip check
     - ipython -h
     - ipython3 -h
-    - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix]
-    - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
-    - python -m pip check
+    - iptest -h
+    - iptest3 -h
 
 about:
   home: https://ipython.org
