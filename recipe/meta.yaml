@@ -82,7 +82,7 @@ test:
   commands:
     - ipython -h
     - ipython3 -h
-    - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix and python_impl == 'cpython']
+    - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix]
     - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
     - python -m pip check
 
