@@ -1,4 +1,4 @@
-{% set version = "7.19.0" %}
+{% set version = "7.20.0" %}
 
 package:
   name: ipython
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: cbb2ef3d5961d44e6a963b9817d4ea4e1fa2eb589c371a470fed14d8d40cbd6a
+  sha256: 1923af00820a8cf58e91d56b89efc59780a6e81363b94464a0f17c039dffff9e
 
 build:
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps
   skip: true  # [py<37]
   entry_points:
@@ -30,34 +30,19 @@ requirements:
     - backcall
     - colorama  # [win]
     - decorator
-    # TODO: unpin once fixed
-    - jedi >=0.10,<0.18
+    - jedi >=0.16,<1.0
     - pexpect >4.3  # [unix]
     - pickleshare
-    - prompt-toolkit !=3.0.0,!=3.0.1,<3.1.0,>=2.0.0
+    - prompt-toolkit >=2.0.0,!=3.0.0,!=3.0.1,<3.1.0
     - pygments
     - python
     - traitlets >=4.2
     - setuptools >=18.5
 
-# generally failing
-{% set nose_exclude = "recursion" %}
-{% set nose_exclude = nose_exclude ~ "|test_history" %}  # [not win]
-# https://github.com/ipython/ipython/issues/12164
-{% set nose_exclude = nose_exclude ~ "|system_interrupt" %}  # [linux]
-{% set nose_exclude = nose_exclude ~ "|home_dir_3|home_dir_5|store_restore|storemagic" %}  # [win]
-
 test:
-  # TODO: remove after ipykernel cycle is broken
-  {% if python_impl == 'pypy' %}
-  requires:
-    - pip
-  commands:
-    - pip check
-  {% else %}
   requires:
     - curio  # [unix]
-    - matplotlib-base  # [python_impl == 'cpython']
+    - matplotlib-base
     - nbformat
     - nose >=0.10.1
     - numpy
@@ -88,12 +73,11 @@ test:
     - IPython.utils
     - IPython.utils.tests
   commands:
+    - pip check
     - ipython -h
     - ipython3 -h
-    - NOSE_EXCLUDE="{{ nose_exclude }}" iptest  # [unix and python_impl == 'cpython']
-    - set NOSE_EXCLUDE="{{ nose_exclude }}" && iptest  # [win]
-    - python -m pip check
-  {% endif %}
+    - iptest -h
+    - iptest3 -h
 
 about:
   home: https://ipython.org
