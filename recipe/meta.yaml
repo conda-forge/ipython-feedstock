@@ -45,6 +45,7 @@ requirements:
 # https://github.com/ipython/ipython/issues/12164
 {% set nose_exclude = nose_exclude ~ "|system_interrupt" %}  # [linux]
 {% set nose_exclude = nose_exclude ~ "|home_dir_3|home_dir_5|store_restore|storemagic" %}  # [win]
+{% set nose_exclude = nose_exclude ~ "|check_complete|xdel|doctest_reset_del|ultratb|AudioData" %}  # [python_impl == 'cpython']
 
 test:
   requires:
