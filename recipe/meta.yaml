@@ -7,9 +7,12 @@ package:
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
   sha256: 1923af00820a8cf58e91d56b89efc59780a6e81363b94464a0f17c039dffff9e
+  patches:
+    # Patch for osx crashes from https://github.com/ipython/ipython/pull/12804
+    - fix-osx-crash-gh12804.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps
   skip: true  # [py<37]
   entry_points:
