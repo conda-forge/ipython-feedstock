@@ -9,7 +9,7 @@ source:
   sha256: 1923af00820a8cf58e91d56b89efc59780a6e81363b94464a0f17c039dffff9e
   patches:
     # Patch for osx crashes from https://github.com/ipython/ipython/pull/12804
-    - fix-osx-crash-gh12804.patch
+    - fix-osx-crash-gh12804.patch  # [osx]
 
 build:
   number: 1
