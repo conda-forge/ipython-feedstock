@@ -1,0 +1,11 @@
+--- a/IPython/terminal/pt_inputhooks/osx.py
++++ b/IPython/terminal/pt_inputhooks/osx.py
+@@ -41,7 +41,7 @@ def C(classname):
+ 
+ CFFileDescriptorCreate = CoreFoundation.CFFileDescriptorCreate
+ CFFileDescriptorCreate.restype = void_p
+-CFFileDescriptorCreate.argtypes = [void_p, ctypes.c_int, ctypes.c_bool, void_p]
++CFFileDescriptorCreate.argtypes = [void_p, ctypes.c_int, ctypes.c_bool, void_p, void_p]
+ 
+ CFFileDescriptorGetNativeDescriptor = CoreFoundation.CFFileDescriptorGetNativeDescriptor
+ CFFileDescriptorGetNativeDescriptor.restype = ctypes.c_int

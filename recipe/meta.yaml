@@ -8,11 +8,14 @@ source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
   sha256: 1923af00820a8cf58e91d56b89efc59780a6e81363b94464a0f17c039dffff9e
   patches:
-    # Patch for osx crashes from https://github.com/ipython/ipython/pull/12804
+    # Patches for osx crashes from https://github.com/ipython/ipython/pull/12804
+    # and https://github.com/ipython/ipython/pull/12807
+    # These will be unnecessary when 7.21 arrives
     - fix-osx-crash-gh12804.patch  # [osx]
+    - fix-osx-py39-crash-gh12807.patch  # [osx]
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv --no-deps
   skip: true  # [py<37]
   entry_points:
