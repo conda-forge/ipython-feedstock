@@ -19,6 +19,8 @@ python_impl:
 target_platform:
 - linux-64
 zip_keys:
+- - cdt_name
+  - docker_image
 - - python
   - numpy
   - python_impl
