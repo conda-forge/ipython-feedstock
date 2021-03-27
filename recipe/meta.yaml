@@ -37,6 +37,7 @@ requirements:
     - pygments
     - python
     - traitlets >=4.2
+    - stack_data
     - setuptools >=18.5
 
 test:
