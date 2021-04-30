@@ -42,6 +42,7 @@ if PYPY:
         "tclass",
         "ultratb",
         "xdel",
+        "longer"
     ]
 
 if __name__ == "__main__":
