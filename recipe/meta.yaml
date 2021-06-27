@@ -43,7 +43,7 @@ requirements:
 test:
   requires:
     - pip
-    {% if win and python_impl == 'pypy' %}
+    {% if win %}
     # TODO: restore tests
     {% else %}
     - curio  # [unix]
