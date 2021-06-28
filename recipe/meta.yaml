@@ -1,7 +1,7 @@
 {% set version = "7.25.0" %}
 
 {% set migrating = False %}
-{% set migrating = True %}  # [win and and python_impl == 'pypy']
+{% set migrating = True %}  # [win and python_impl == 'pypy']
 
 package:
   name: ipython
