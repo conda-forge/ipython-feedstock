@@ -1,4 +1,6 @@
 {% set version = "7.24.1" %}
+{% set migrating = False %}
+{% set migrating = True %}  # [win and and python_impl == 'pypy']
 
 package:
   name: ipython
@@ -43,9 +45,7 @@ requirements:
 test:
   requires:
     - pip
-    {% if win %}
-    # TODO: restore tests
-    {% else %}
+    {% if not migrating %}
     - curio  # [unix]
     - matplotlib-base
     - nbformat
@@ -56,7 +56,7 @@ test:
     - testpath
     - trio
     - ipykernel
-  {% endif %}
+    {% endif %}
 
   imports:
     - IPython
@@ -82,8 +82,10 @@ test:
     - pip check
     - ipython -h
     - ipython3 -h
+    {% if not migrating %}
     - iptest -h
     - iptest3 -h
+    {% endif %}
 
 about:
   home: https://ipython.org

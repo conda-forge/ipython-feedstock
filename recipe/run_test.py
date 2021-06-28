@@ -3,10 +3,12 @@ import platform
 import os
 import sys
 
-
 WIN = platform.system() == "Windows"
 LINUX = platform.system() == "Linux"
 PYPY = "__pypy__" in sys.builtin_module_names
+
+# TODO: remove when all test dependencies are available on pypy37 for Windows
+MIGRATING = WIN and PYPY
 
 # this is generally failing, for whatever reason
 NOSE_EXCLUDE = ["recursion"]
@@ -46,13 +48,16 @@ if PYPY:
     ]
 
 if __name__ == "__main__":
-    # TODO: remove after pypy37 migration
-    if WIN:
-        print("TODO: Restore tests")
-        sys.exit(0)
-    env = dict(os.environ)
-    env["NOSE_EXCLUDE"] = "|".join(sorted(NOSE_EXCLUDE))
-    print("NOSE_EXCLUDE is {NOSE_EXCLUDE}".format(**env), flush=True)
-    if PYPY:
-        print("DO _SOMETHING_")
-    sys.exit(subprocess.call(["iptest3", *IPTEST_ARGS], env=env))
+    print("Building on Windows?", WIN)
+    print("Building on Linux?", WIN)
+    print("Building for PyPy?", PYPY)
+    print("Is this a migration?", MIGRATING)
+
+    if MIGRATING:
+        print("This is a migration, skipping test suite! Put it back later!", flush=True)
+    else:
+        env = dict(os.environ)
+        env["NOSE_EXCLUDE"] = "|".join(sorted(NOSE_EXCLUDE))
+        print("NOSE_EXCLUDE is {NOSE_EXCLUDE}".format(**env), flush=True)
+        print("ipytest3 args", *IPTEST_ARGS, flush=True)
+        sys.exit(subprocess.call(["iptest3", *IPTEST_ARGS], env=env))
