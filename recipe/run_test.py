@@ -49,7 +49,7 @@ if PYPY:
 
 if __name__ == "__main__":
     print("Building on Windows?", WIN)
-    print("Building on Linux?", WIN)
+    print("Building on Linux?", LINUX)
     print("Building for PyPy?", PYPY)
     print("Is this a migration?", MIGRATING)
 
