@@ -1,5 +1,8 @@
 {% set version = "7.25.0" %}
 
+{% set migrating = False %}
+{% set migrating = True %}  # [win and python_impl == 'pypy']
+
 package:
   name: ipython
   version: {{ version }}
@@ -9,7 +12,7 @@ source:
   sha256: 54bbd1fe3882457aaf28ae060a5ccdef97f212a741754e420028d4ec5c2291dc
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps
   skip: true  # [py<37]
   entry_points:
@@ -31,7 +34,8 @@ requirements:
     - colorama  # [win]
     - decorator
     - jedi >=0.16,<1.0
-    - matplotlib-inline
+    # earlier versions depended on ipython
+    - matplotlib-inline >=0.1.2
     - pexpect >4.3  # [unix]
     - pickleshare
     - prompt-toolkit >=2.0.0,!=3.0.0,!=3.0.1,<3.1.0
@@ -42,6 +46,8 @@ requirements:
 
 test:
   requires:
+    - pip
+    {% if not migrating %}
     - curio  # [unix]
     - matplotlib-base
     - nbformat
@@ -50,9 +56,10 @@ test:
     - pygments
     - requests
     - testpath
-    - pip
     - trio
     - ipykernel
+    {% endif %}
+
   imports:
     - IPython
     - IPython.core
@@ -77,8 +84,10 @@ test:
     - pip check
     - ipython -h
     - ipython3 -h
+    {% if not migrating %}
     - iptest -h
     - iptest3 -h
+    {% endif %}
 
 about:
   home: https://ipython.org
