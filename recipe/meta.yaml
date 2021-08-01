@@ -1,7 +1,8 @@
-{% set version = "7.25.0" %}
+{% set version = "7.26.0" %}
 
 {% set migrating = False %}
-{% set migrating = True %}  # [win and python_impl == 'pypy']
+# Handle a new migration by making something like this:
+# {% set migrating = False %}  # [win and python_impl == 'pypy']
 
 package:
   name: ipython
@@ -9,7 +10,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 54bbd1fe3882457aaf28ae060a5ccdef97f212a741754e420028d4ec5c2291dc
+  sha256: 0cff04bb042800129348701f7bd68a430a844e8fb193979c08f6c99f28bb735e
 
 build:
   number: 1
