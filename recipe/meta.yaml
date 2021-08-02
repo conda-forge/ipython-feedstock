@@ -1,8 +1,7 @@
 {% set version = "7.26.0" %}
 
 {% set migrating = False %}
-# Handle a new migration by making something like this:
-# {% set migrating = False %}  # [win and python_impl == 'pypy']
+{% set migrating = False %}  # [win and python_impl == 'pypy']
 
 package:
   name: ipython
