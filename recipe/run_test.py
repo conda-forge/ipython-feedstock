@@ -38,13 +38,14 @@ if PYPY:
     NOSE_EXCLUDE += [
         "audio",
         "check_complete",
+        "longer",
         "memory_error",
+        "nest_embed",
         "obj_del",
         "reset_del",
         "tclass",
         "ultratb",
-        "xdel",
-        "longer"
+        "xdel"
     ]
 
 if __name__ == "__main__":
