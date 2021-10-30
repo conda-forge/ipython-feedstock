@@ -1,6 +1,7 @@
-{% set version = "7.28.0" %}
+{% set version = "7.29.0" %}
 
 {% set migrating = False %}
+# TODO: remove this, but still needed as of 7.29.0
 {% set migrating = True %}  # [win and python_impl == 'pypy']
 
 package:
@@ -9,7 +10,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 2097be5c814d1b974aea57673176a924c4c8c9583890e7a5f082f547b9975b11
+  sha256: 4f69d7423a5a1972f6347ff233e38bbf4df6a150ef20fbb00c635442ac3060aa
 
 build:
   number: 0
