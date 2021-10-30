@@ -1,7 +1,8 @@
 {% set version = "7.29.0" %}
 
 {% set migrating = False %}
-# {% set migrating = True %}  # [win and python_impl == 'pypy']
+# TODO: remove this, but still needed as of 7.29.0
+{% set migrating = True %}  # [win and python_impl == 'pypy']
 
 package:
   name: ipython
