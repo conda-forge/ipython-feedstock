@@ -3,6 +3,7 @@
 {% set migrating = False %}
 # TODO: remove this, but still needed as of 7.29.0
 {% set migrating = True %}  # [win and python_impl == 'pypy']
+{% set migrating = True %}  # [py >= 310]
 
 package:
   name: ipython
