@@ -7,8 +7,8 @@ WIN = platform.system() == "Windows"
 LINUX = platform.system() == "Linux"
 PYPY = "__pypy__" in sys.builtin_module_names
 
-# TODO: remove when all test dependencies are available on pypy37 for Windows
-MIGRATING = WIN and PYPY
+# Environment variable should be set in the meta.yaml
+MIGRATING = eval(os.environ.get("MIGRATING", "None"))
 
 # this is generally failing, for whatever reason
 NOSE_EXCLUDE = ["recursion"]
