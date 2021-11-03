@@ -1,4 +1,4 @@
-{% set version = "7.27.0" %}
+{% set version = "7.29.0" %}
 
 {% set migrating = False %}
 {% set migrating = True %}  # [win and python_impl == 'pypy']
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 58b55ebfdfa260dad10d509702dc2857cb25ad82609506b070cf2d7b7df5af13
+  sha256: 4f69d7423a5a1972f6347ff233e38bbf4df6a150ef20fbb00c635442ac3060aa
 
 build:
   number: 0
@@ -25,6 +25,8 @@ requirements:
   host:
     - pip
     - python
+    - setuptools
+    - wheel
   run:
     - appnope  # [osx]
     - backcall
