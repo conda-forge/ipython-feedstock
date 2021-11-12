@@ -24,6 +24,8 @@ build:
     - ipython3 = IPython:start_ipython
     - iptest = IPython.testing.iptestcontroller:main
     - iptest3 = IPython.testing.iptestcontroller:main
+  script_env:
+    - IPYTHON_TESTING_TIMEOUT_SCALE=5
 
 requirements:
   build:
