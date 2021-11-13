@@ -14,11 +14,12 @@ source:
   sha256: 4f69d7423a5a1972f6347ff233e38bbf4df6a150ef20fbb00c635442ac3060aa
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv --no-deps
   skip: true  # [py<37]
   script_env:
     - MIGRATING={{ migrating }}
+    - IPYTHON_TESTING_TIMEOUT_SCALE=5
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
@@ -61,7 +62,8 @@ test:
     - requests
     - testpath
     - trio
-    - ipykernel
+    # TODO: investigate interrupt issues upstream 
+    - ipykernel !=6.5.0
     {% endif %}
 
   imports:
