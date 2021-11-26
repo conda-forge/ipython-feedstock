@@ -53,15 +53,15 @@ test:
     - pip
     {% if not migrating %}
     - curio  # [unix]
+    - ipykernel
     - matplotlib-base
     - nbformat
     - nose >=0.10.1
     - numpy >=1.17
+    - pytest
     - requests
     - testpath
     - trio
-    # TODO: investigate interrupt issues upstream
-    - ipykernel !=6.5.0
     {% endif %}
 
   imports:
