@@ -26,13 +26,13 @@ if LINUX:
 if PPC:
     pass
 
-PYTEST_ARGS = [sys.executable, "pytest", "--pyargs", "ipython", "-vv"]
+PYTEST_ARGS = [sys.executable, "-m", "pytest", "--pyargs", "IPython", "-vv"]
 
 if PYPY:
     pass
 else:
     PYTEST_ARGS += [
-        "--cov", "ipython", "--no-cov-on-fail", "--cov-fail-under", COV_THRESHOLD,
+        "--cov", "IPython", "--no-cov-on-fail", "--cov-fail-under", COV_THRESHOLD,
         "--cov-report", "term-missing:skip-covered"
     ]
 
