@@ -38,7 +38,7 @@ else:
     ]
 
 if len(PYTEST_SKIPS) == 1:
-    PYTEST_ARGS += ["-k", f"not {PYTEST_SKIPS}"]
+    PYTEST_ARGS += ["-k", f"not {PYTEST_SKIPS[0]}"]
 elif PYTEST_SKIPS:
     PYTEST_ARGS += ["-k", f"""not ({" or ".join(PYTEST_SKIPS) })"""]
 

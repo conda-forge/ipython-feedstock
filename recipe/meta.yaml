@@ -38,7 +38,7 @@ requirements:
     - matplotlib-inline
     - pexpect >4.3  # [unix]
     - pickleshare
-    - prompt_toolkit >=2.0.0,<3.1.0,!=3.0.0,!=3.0.1
+    - prompt-toolkit >=2.0.0,<3.1.0,!=3.0.0,!=3.0.1
     - pygments
     - setuptools >=18.5
     - stack_data
