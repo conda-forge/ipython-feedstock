@@ -8,7 +8,7 @@ LINUX = platform.system() == "Linux"
 PYPY = "__pypy__" in sys.builtin_module_names
 PPC = "ppc" in platform.machine()
 
-COV_THRESHOLD = "100"
+COV_THRESHOLD = "0"
 
 # Environment variable should be set in the meta.yaml
 MIGRATING = eval(os.environ.get("MIGRATING", "None"))
@@ -21,7 +21,7 @@ else:
     pass
 
 if LINUX:
-    pass
+    COV_THRESHOLD = "73"
 
 if PPC:
     pass
