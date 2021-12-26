@@ -3,7 +3,6 @@
 {% set migrating = False %}
 # TODO: remove this, but still needed as of 7.29.0
 {% set migrating = True %}  # [win and python_impl == 'pypy']
-{% set migrating = True %}  # [py >= 310]
 
 package:
   name: ipython
@@ -19,7 +18,6 @@ build:
   skip: true  # [py<38]
   script_env:
     - MIGRATING={{ migrating }}
-    - IPYTHON_TESTING_TIMEOUT_SCALE=5
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
@@ -72,7 +70,6 @@ test:
     - IPython.extensions
     - IPython.extensions.tests
     - IPython.external
-    - IPython.external.decorators
     - IPython.lib
     - IPython.lib.tests
     - IPython.sphinxext

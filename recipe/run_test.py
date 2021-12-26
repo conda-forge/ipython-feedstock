@@ -22,6 +22,7 @@ else:
 
 if LINUX:
     COV_THRESHOLD = "73"
+    PYTEST_SKIPS += ["system_interrupt"]
 
 if PPC:
     pass
@@ -50,4 +51,6 @@ if __name__ == "__main__":
     if MIGRATING:
         print("This is a migration, skipping test suite! Put it back later!", flush=True)
     else:
-        sys.exit(subprocess.call(PYTEST_ARGS))
+        env = dict(os.environ)
+        env["IPYTHON_TESTING_TIMEOUT_SCALE"] = "10"
+        sys.exit(subprocess.call(PYTEST_ARGS, env=env))
