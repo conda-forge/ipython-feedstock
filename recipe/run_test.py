@@ -8,49 +8,38 @@ LINUX = platform.system() == "Linux"
 PYPY = "__pypy__" in sys.builtin_module_names
 PPC = "ppc" in platform.machine()
 
+COV_THRESHOLD = "100"
+
 # Environment variable should be set in the meta.yaml
 MIGRATING = eval(os.environ.get("MIGRATING", "None"))
 
-# this is generally failing, for whatever reason
-NOSE_EXCLUDE = ["recursion"]
+PYTEST_SKIPS = []
 
 if WIN:
-    NOSE_EXCLUDE += ["home_dir_3", "home_dir_5", "store_restore", "storemagic"]
+    pass
 else:
-    NOSE_EXCLUDE += ["history"]
+    pass
 
 if LINUX:
-    # https://github.com/ipython/ipython/issues/12164
-    NOSE_EXCLUDE += ["system_interrupt"]
+    pass
 
 if PPC:
-    NOSE_EXCLUDE += ["ipython_dir_8", "audio_data"]
+    pass
 
-IPTEST_ARGS = []
+PYTEST_ARGS = [sys.executable, "pytest", "--pyargs", "ipython", "-vv"]
 
 if PYPY:
-    # TODO: figure out a better way to skip doctests, so the 500+ `core` tests
-    #       that _do_ work are executed
-    IPTEST_ARGS = [
-        "autoreload",
-        "extensions",
-        "lib",
-        "terminal",
-        "testing",
-        "utils",
+    pass
+else:
+    PYTEST_ARGS += [
+        "--cov", "ipython", "--no-cov-on-fail", "--cov-fail-under", COV_THRESHOLD,
+        "--cov-report", "term-missing:skip-covered"
     ]
-    NOSE_EXCLUDE += [
-        "audio",
-        "check_complete",
-        "longer",
-        "memory_error",
-        "nest_embed",
-        "obj_del",
-        "reset_del",
-        "tclass",
-        "ultratb",
-        "xdel"
-    ]
+
+if len(PYTEST_SKIPS) == 1:
+    PYTEST_ARGS += ["-k", f"not {PYTEST_SKIPS}"]
+elif PYTEST_SKIPS:
+    PYTEST_ARGS += ["-k", f"""not ({" or ".join(PYTEST_SKIPS) })"""]
 
 if __name__ == "__main__":
     print("Building on Windows?", WIN)
@@ -61,8 +50,4 @@ if __name__ == "__main__":
     if MIGRATING:
         print("This is a migration, skipping test suite! Put it back later!", flush=True)
     else:
-        env = dict(os.environ)
-        env["NOSE_EXCLUDE"] = "|".join(sorted(NOSE_EXCLUDE))
-        print("NOSE_EXCLUDE is {NOSE_EXCLUDE}".format(**env), flush=True)
-        print("ipytest3 args", *IPTEST_ARGS, flush=True)
-        sys.exit(subprocess.call(["iptest3", *IPTEST_ARGS], env=env))
+        sys.exit(subprocess.call(PYTEST_ARGS))
