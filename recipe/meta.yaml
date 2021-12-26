@@ -12,9 +12,7 @@ source:
 
 build:
   number: 0
-  script:
-    - {{ PYTHON }} -c "__import__('os').unlink('pyproject.toml')"  # [aarch64 or ppc64le]
-    - {{ PYTHON }} -m pip install . -vv --no-deps
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
   skip: true  # [py<38]
   script_env:
