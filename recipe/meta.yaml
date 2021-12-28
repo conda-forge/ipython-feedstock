@@ -12,11 +12,19 @@ source:
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  script:
+    # TODO: investigate removing this after an upstream release including
+    #       https://github.com/ipython/ipython/pull/13423
+    - {{ PYTHON }} -c "__import__('os').unlink('pyproject.toml')"  # [aarch64 or ppc64le]
+    - {{ PYTHON }} -m pip install . -vv --no-deps
 
   skip: true  # [py<38]
   script_env:
     - MIGRATING={{ migrating }}
+    # TODO: investigate removing when some pypy/coverage speed issues are resolved
+    - IPYTHON_TESTING_TIMEOUT_SCALE=10
+    - COV_THRESHOLD=73  # [unix]
+    - COV_THRESHOLD=72  # [win]
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
