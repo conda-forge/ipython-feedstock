@@ -1,9 +1,6 @@
-{% set version = "7.30.1" %}
+{% set version = "8.0.0b1" %}
 
 {% set migrating = False %}
-# TODO: remove this, but still needed as of 7.29.0
-{% set migrating = True %}  # [win and python_impl == 'pypy']
-{% set migrating = True %}  # [py >= 310]
 
 package:
   name: ipython
@@ -11,20 +8,26 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: cb6aef731bf708a7727ab6cde8df87f0281b1427d41e65d62d4b68934fa54e97
+  sha256: e49fb9a52bf13076930fdf484506567070f4afae1e050064b882dfef866458a8
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
-  skip: true  # [py<37]
+  script:
+    # TODO: investigate removing this after an upstream release including
+    #       https://github.com/ipython/ipython/pull/13423
+    - {{ PYTHON }} -c "__import__('os').unlink('pyproject.toml')"  # [aarch64 or ppc64le]
+    - {{ PYTHON }} -m pip install . -vv --no-deps
+
+  skip: true  # [py<38]
   script_env:
     - MIGRATING={{ migrating }}
-    - IPYTHON_TESTING_TIMEOUT_SCALE=5
+    # TODO: investigate removing when some pypy/coverage speed issues are resolved
+    - IPYTHON_TESTING_TIMEOUT_SCALE=10
+    - COV_THRESHOLD=73  # [unix]
+    - COV_THRESHOLD=72  # [win]
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
-    - iptest = IPython.testing.iptestcontroller:main
-    - iptest3 = IPython.testing.iptestcontroller:main
 
 requirements:
   build:
@@ -34,32 +37,34 @@ requirements:
     - pip
     - python
   run:
+    - python
     - appnope  # [osx]
     - backcall
+    - black
     - colorama  # [win]
     - decorator
     - jedi >=0.16
     - matplotlib-inline
     - pexpect >4.3  # [unix]
     - pickleshare
-    - prompt-toolkit >=2.0.0,!=3.0.0,!=3.0.1,<3.1.0
+    - prompt-toolkit >=2.0.0,<3.1.0,!=3.0.0,!=3.0.1
     - pygments
-    - python
     - setuptools >=18.5
-    - traitlets >=4.2
+    - stack_data
+    - traitlets >=5
 
 test:
   requires:
     - pip
     {% if not migrating %}
-    - curio  # [unix]
-    - ipykernel
-    - matplotlib-base
+    - curio
+    - matplotlib-base !=3.2.0
     - nbformat
-    - nose >=0.10.1
     - numpy >=1.17
+    - pandas
+    - pygments
     - pytest
-    - requests
+    - pytest-cov
     - testpath
     - trio
     {% endif %}
@@ -72,7 +77,6 @@ test:
     - IPython.extensions
     - IPython.extensions.tests
     - IPython.external
-    - IPython.external.decorators
     - IPython.lib
     - IPython.lib.tests
     - IPython.sphinxext
@@ -88,10 +92,6 @@ test:
     - pip check
     - ipython -h
     - ipython3 -h
-    {% if not migrating %}
-    - iptest -h
-    - iptest3 -h
-    {% endif %}
 
 about:
   home: https://ipython.org
