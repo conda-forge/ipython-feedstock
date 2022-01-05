@@ -7,7 +7,7 @@ cdt_name:
 channel_sources:
 - conda-forge
 channel_targets:
-- conda-forge ipython_beta
+- conda-forge ipython_rc
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 pin_run_as_build:
@@ -16,10 +16,5 @@ pin_run_as_build:
     max_pin: x.x
 python:
 - 3.10.* *_cpython
-python_impl:
-- cpython
 target_platform:
 - linux-aarch64
-zip_keys:
-- - python
-  - python_impl
