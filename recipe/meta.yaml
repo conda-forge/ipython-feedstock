@@ -12,11 +12,7 @@ source:
 
 build:
   number: 0
-  script:
-    # TODO: investigate removing this after an upstream release including
-    #       https://github.com/ipython/ipython/pull/13423
-    # - {{ PYTHON }} -c "__import__('os').unlink('pyproject.toml')"  # [aarch64 or ppc64le]
-    - {{ PYTHON }} -m pip install . -vv --no-deps
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
   skip: true  # [py<38]
   script_env:
