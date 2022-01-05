@@ -1,2 +1,2 @@
 channel_targets:
-- conda-forge ipython_beta
+- conda-forge ipython_rc

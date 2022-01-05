@@ -1,4 +1,4 @@
-{% set version = "8.0.0b1" %}
+{% set version = "8.0.0rc1" %}
 
 {% set migrating = False %}
 
@@ -8,15 +8,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: e49fb9a52bf13076930fdf484506567070f4afae1e050064b882dfef866458a8
+  sha256: e12b8c8673a968d72c2ab340727c7b7340979bcf8b848dbfefe781680a46d0b4
 
 build:
   number: 0
-  script:
-    # TODO: investigate removing this after an upstream release including
-    #       https://github.com/ipython/ipython/pull/13423
-    - {{ PYTHON }} -c "__import__('os').unlink('pyproject.toml')"  # [aarch64 or ppc64le]
-    - {{ PYTHON }} -m pip install . -vv --no-deps
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
   skip: true  # [py<38]
   script_env:
