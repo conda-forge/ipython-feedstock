@@ -1,4 +1,4 @@
-{% set version = "8.0.0b1" %}
+{% set version = "8.0.0rc1" %}
 
 {% set migrating = False %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: e49fb9a52bf13076930fdf484506567070f4afae1e050064b882dfef866458a8
+  sha256: e12b8c8673a968d72c2ab340727c7b7340979bcf8b848dbfefe781680a46d0b4
 
 build:
   number: 0
