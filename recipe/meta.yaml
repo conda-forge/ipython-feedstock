@@ -1,4 +1,4 @@
-{% set version = "7.30.1" %}
+{% set version = "7.31.0" %}
 
 {% set migrating = False %}
 # TODO: remove this, but still needed as of 7.29.0
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: cb6aef731bf708a7727ab6cde8df87f0281b1427d41e65d62d4b68934fa54e97
+  sha256: 346c74db7312c41fa566d3be45d2e759a528dcc2994fe48aac1a03a70cd668a3
 
 build:
   number: 0
