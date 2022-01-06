@@ -59,6 +59,7 @@ test:
     - nose >=0.10.1
     - numpy >=1.17
     - pytest
+    - pygments
     - requests
     - testpath
     - trio
