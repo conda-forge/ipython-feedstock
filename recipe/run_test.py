@@ -6,9 +6,10 @@ import sys
 WIN = platform.system() == "Windows"
 LINUX = platform.system() == "Linux"
 PYPY = "__pypy__" in sys.builtin_module_names
+PPC = "ppc" in platform.machine()
 
-# TODO: remove when all test dependencies are available on pypy37 for Windows
-MIGRATING = WIN and PYPY
+# Environment variable should be set in the meta.yaml
+MIGRATING = eval(os.environ.get("MIGRATING", "None"))
 
 # this is generally failing, for whatever reason
 NOSE_EXCLUDE = ["recursion"]
@@ -21,6 +22,9 @@ else:
 if LINUX:
     # https://github.com/ipython/ipython/issues/12164
     NOSE_EXCLUDE += ["system_interrupt"]
+
+if PPC:
+    NOSE_EXCLUDE += ["ipython_dir_8", "audio_data"]
 
 IPTEST_ARGS = []
 

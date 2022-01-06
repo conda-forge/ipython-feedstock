@@ -15,6 +15,11 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps
   skip: true  # [py<37]
+  script_env:
+    # Use MIGRATING environment variable instead of duplicating conditions into run_test.py.
+    # Combine script_env stanzas to avoid clobber
+    - MIGRATING={{ migrating }}
+    - IPYTHON_TESTING_TIMEOUT_SCALE=5
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
@@ -32,7 +37,7 @@ requirements:
     - backcall
     - colorama  # [win]
     - decorator
-    - jedi >=0.16,<1.0
+    - jedi >=0.16
     # earlier versions depended on ipython
     - matplotlib-inline >=0.1.2
     - pexpect >4.3  # [unix]
@@ -48,15 +53,15 @@ test:
     - pip
     {% if not migrating %}
     - curio  # [unix]
+    - ipykernel
     - matplotlib-base
     - nbformat
     - nose >=0.10.1
-    - numpy
-    - pygments
+    - numpy >=1.17
+    - pytest
     - requests
     - testpath
     - trio
-    - ipykernel
     {% endif %}
 
   imports:
