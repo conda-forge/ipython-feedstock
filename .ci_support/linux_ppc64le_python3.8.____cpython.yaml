@@ -1,7 +1,3 @@
-BUILD:
-- aarch64-conda_cos7-linux-gnu
-cdt_arch:
-- aarch64
 cdt_name:
 - cos7
 channel_sources:
@@ -16,10 +12,5 @@ pin_run_as_build:
     max_pin: x.x
 python:
 - 3.8.* *_cpython
-python_impl:
-- cpython
 target_platform:
-- linux-aarch64
-zip_keys:
-- - python
-  - python_impl
+- linux-ppc64le
