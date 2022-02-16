@@ -11,7 +11,7 @@ source:
   sha256: ab564d4521ea8ceaac26c3a2c6e5ddbca15c8848fd5a5cc325f960da88d42974
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
   skip: true  # [py<38]
@@ -36,7 +36,6 @@ requirements:
     - python
     - appnope  # [osx]
     - backcall
-    - black
     - colorama  # [win]
     - decorator
     - jedi >=0.16
@@ -44,7 +43,7 @@ requirements:
     - pexpect >4.3  # [unix]
     - pickleshare
     - prompt-toolkit >=2.0.0,<3.1.0,!=3.0.0,!=3.0.1
-    - pygments
+    - pygments >=2.4.0
     - setuptools >=18.5
     - stack_data
     - traitlets >=5
@@ -53,13 +52,14 @@ test:
   requires:
     - pip
     {% if not migrating %}
+    - black
     - curio
     - matplotlib-base !=3.2.0
     - nbformat
     - numpy >=1.17
     - pandas
     - pygments
-    - pytest
+    - pytest <7
     - pytest-cov
     - testpath
     - trio
