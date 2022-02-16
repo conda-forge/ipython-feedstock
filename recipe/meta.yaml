@@ -52,14 +52,13 @@ test:
   requires:
     - pip
     {% if not migrating %}
-    - black
     - curio
     - matplotlib-base !=3.2.0
     - nbformat
     - numpy >=1.17
     - pandas
     - pygments
-    - pytest
+    - pytest <7
     - pytest-cov
     - testpath
     - trio
