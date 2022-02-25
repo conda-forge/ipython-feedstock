@@ -15,7 +15,7 @@ COV_THRESHOLD = os.environ.get("COV_THRESHOLD")
 MIGRATING = eval(os.environ.get("MIGRATING", "None"))
 
 PYTEST_SKIPS = []
-PYTEST_ARGS = [sys.executable, "-m", "pytest", "--pyargs", "IPython", "-vv"]
+PYTEST_ARGS = ["--pyargs", "IPython", "-vv"]
 
 if WIN:
     pass
