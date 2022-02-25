@@ -1,7 +1,8 @@
-import subprocess
-import platform
 import os
+import platform
 import sys
+
+import pytest
 
 WIN = platform.system() == "Windows"
 LINUX = platform.system() == "Linux"
@@ -39,9 +40,10 @@ elif PYTEST_SKIPS:
     PYTEST_ARGS += ["-k", f"""not ({" or ".join(PYTEST_SKIPS) })"""]
 
 if __name__ == "__main__":
-    print("Building on Windows?", WIN)
-    print("Building on Linux?  ", LINUX)
-    print("Building for PyPy?  ", PYPY)
+    print("os.name?             ", os.name)
+    print("Building on Windows? ", WIN)
+    print("Building on Linux?   ", LINUX)
+    print("Building for PyPy?   ", PYPY)
 
     if MIGRATING:
         print("This is a migration, skipping test suite! Put it back later!", flush=True)
@@ -49,4 +51,4 @@ if __name__ == "__main__":
     else:
         print("Running pytest with args")
         print(PYTEST_ARGS, flush=True)
-        sys.exit(subprocess.call(PYTEST_ARGS))
+        sys.exit(pytest.main(PYTEST_ARGS))
