@@ -1,4 +1,4 @@
-{% set version = "8.0.1" %}
+{% set version = "8.1.1" %}
 
 {% set migrating = false %}
 
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: ab564d4521ea8ceaac26c3a2c6e5ddbca15c8848fd5a5cc325f960da88d42974
+  sha256: 8138762243c9b3a3ffcf70b37151a2a35c23d3a29f9743878c33624f4207be3d
 
 build:
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
   skip: true  # [py<38]
@@ -35,8 +35,6 @@ requirements:
   run:
     - python
     - appnope  # [osx]
-    # TODO: watch more carefully upstream for when made optional
-    - black
     - backcall
     - colorama  # [win]
     - decorator
@@ -54,10 +52,11 @@ test:
   requires:
     - pip
     {% if not migrating %}
+    - black
     - curio
     - matplotlib-base !=3.2.0
     - nbformat
-    - numpy >=1.17
+    - numpy >=1.19
     - pandas
     - pygments
     - pytest <7
