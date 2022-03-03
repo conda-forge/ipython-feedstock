@@ -59,7 +59,7 @@ test:
     - numpy >=1.19
     - pandas
     - pygments
-    - pytest
+    - pytest <7
     - pytest-cov
     - testpath
     - trio
