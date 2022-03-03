@@ -35,8 +35,6 @@ requirements:
   run:
     - python
     - appnope  # [osx]
-    # TODO: watch more carefully upstream for when made optional
-    - black
     - backcall
     - colorama  # [win]
     - decorator
@@ -54,13 +52,14 @@ test:
   requires:
     - pip
     {% if not migrating %}
+    - black
     - curio
     - matplotlib-base !=3.2.0
     - nbformat
-    - numpy >=1.17
+    - numpy >=1.19
     - pandas
     - pygments
-    - pytest <7
+    - pytest
     - pytest-cov
     - testpath
     - trio
