@@ -11,10 +11,10 @@ source:
   sha256: f2db3a10254241d9b447232cec8b424847f338d9d36f9a577a6192c332a46abd
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
-  skip: true  # [py<38]
+  noarch: python
   script_env:
     - MIGRATING={{ migrating }}
     # TODO: investigate removing when some pypy/coverage speed issues are resolved
@@ -26,21 +26,25 @@ build:
     - ipython3 = IPython:start_ipython
 
 requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
     - pip
-    - python
+    - python >=3.8
   run:
-    - python
-    - appnope  # [osx]
+    - __{{ noarch_platform }}
+    - python >=3.8
+    {% if noarch_platform == "osx" %}
+    - appnope
+    {% endif %}
     - backcall
-    - colorama  # [win]
+    {% if noarch_platform == "win" %}
+    - colorama
+    {% endif %}
     - decorator
     - jedi >=0.16
     - matplotlib-inline
-    - pexpect >4.3  # [unix]
+    {% if noarch_platform != "win" %}
+    - pexpect >4.3
+    {% endif %}
     - pickleshare
     - prompt-toolkit >=2.0.0,<3.1.0,!=3.0.0,!=3.0.1
     - pygments >=2.4.0
