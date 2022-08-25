@@ -13,7 +13,7 @@ COV_THRESHOLD = os.environ.get("COV_THRESHOLD")
 # Environment variable should be set in the meta.yaml
 MIGRATING = eval(os.environ.get("MIGRATING", "None"))
 
-PYTEST_SKIPS = []
+PYTEST_SKIPS = ["decorator_skip", "pprint_heap_allocated"]
 PYTEST_ARGS = [sys.executable, "-m", "pytest", "--pyargs", "IPython", "-vv"]
 
 if WIN:
