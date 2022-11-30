@@ -9,6 +9,8 @@ package:
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
   sha256: 882899fe78d5417a0aa07f995db298fa28b58faeba2112d2e3a4c95fe14bb738
+  patches:
+    - 0000-no-minor-entry-point.patch
 
 build:
   number: 0
@@ -24,14 +26,15 @@ build:
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
-    # there's _another_ one, but it's based on the python major version, and not going back to
-    # `3 * PY` builds just for that
+    # provided by _ipython_minor_entry_point
+    # ipython3.X = IPython:start_ipython
 
 requirements:
   host:
     - pip
     - python >=3.8
   run:
+    - _ipython_minor_entry_point =={{ version }}.*
     - __{{ noarch_platform }}
     - python >=3.8
     {% if noarch_platform == "osx" %}
@@ -93,6 +96,8 @@ test:
     - pip check
     - ipython -h
     - ipython3 -h
+    # this is tested in run_test.py
+    # - ipython3.X -h
 
 about:
   home: https://ipython.org
