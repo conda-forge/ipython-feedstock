@@ -1,4 +1,4 @@
-{% set version = "8.6.0" %}
+{% set version = "8.7.0" %}
 
 {% set migrating = false %}
 
@@ -8,10 +8,13 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 7c959e3dedbf7ed81f9b9d8833df252c430610e2a4a6464ec13cd20975ce20a5
+  sha256: 882899fe78d5417a0aa07f995db298fa28b58faeba2112d2e3a4c95fe14bb738
+  patches:
+    - 0000-no-minor-entry-point.patch
+    {% if version == "8.7.0" %}- 0001-restore-pygments-lexers.patch{% endif %}
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
   noarch: python
@@ -24,12 +27,15 @@ build:
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
+    # provided by _ipython_minor_entry_point
+    # ipython3.X = IPython:start_ipython
 
 requirements:
   host:
     - pip
     - python >=3.8
   run:
+    - _ipython_minor_entry_point =={{ version }}.*
     - __{{ noarch_platform }}
     - python >=3.8
     {% if noarch_platform == "osx" %}
@@ -46,7 +52,7 @@ requirements:
     - pexpect >4.3
     {% endif %}
     - pickleshare
-    - prompt-toolkit >3.0.1,<3.1.0
+    - prompt-toolkit >=3.0.11,<3.1.0
     - pygments >=2.4.0
     - stack_data
     - traitlets >=5
@@ -54,6 +60,7 @@ requirements:
 test:
   requires:
     - pip
+    - m2-grep  # [win]
     {% if not migrating %}
     - black
     - curio
@@ -89,8 +96,11 @@ test:
     - IPython.utils.tests
   commands:
     - pip check
+    - pygmentize -L | grep ipython
     - ipython -h
     - ipython3 -h
+    # this is tested in run_test.py
+    # - ipython3.X -h
 
 about:
   home: https://ipython.org
