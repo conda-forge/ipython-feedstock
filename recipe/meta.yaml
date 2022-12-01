@@ -11,6 +11,7 @@ source:
   sha256: 882899fe78d5417a0aa07f995db298fa28b58faeba2112d2e3a4c95fe14bb738
   patches:
     - 0000-no-minor-entry-point.patch
+    {% if version == "8.7.0" %}- 0001-restore-pygments-lexers.patch{% endif %}
 
 build:
   number: 0
@@ -59,6 +60,7 @@ requirements:
 test:
   requires:
     - pip
+    - m2-grep  # [win]
     {% if not migrating %}
     - black
     - curio
@@ -94,6 +96,7 @@ test:
     - IPython.utils.tests
   commands:
     - pip check
+    - pygmentize -L | grep ipython
     - ipython -h
     - ipython3 -h
     # this is tested in run_test.py
