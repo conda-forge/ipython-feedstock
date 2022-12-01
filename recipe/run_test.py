@@ -2,7 +2,6 @@ import subprocess
 import platform
 import os
 import sys
-from shutil import which
 
 WIN = platform.system() == "Windows"
 LINUX = platform.system() == "Linux"
@@ -11,12 +10,6 @@ PPC = "ppc" in platform.machine()
 
 MINOR_SUFFIX = ".".join([str(sys.version_info[0]), str(sys.version_info[1])])
 MINOR_ENTRY_POINT = f"ipython{MINOR_SUFFIX}"
-MINOR_EXE = (
-    which("MINOR_ENTRY_POINT") or
-    which(f"{MINOR_ENTRY_POINT}.exe") or
-    which(f"{MINOR_ENTRY_POINT}.cmd") or
-    which(f"{MINOR_ENTRY_POINT}.bat")
-)
 
 COV_THRESHOLD = os.environ.get("COV_THRESHOLD")
 
@@ -54,12 +47,8 @@ if __name__ == "__main__":
     print("Building for PyPy?        ", PYPY)
 
     print("Checking minor entry point", MINOR_ENTRY_POINT, flush=True)
-    print("... as                    ", MINOR_EXE, flush=True)
 
-    if MINOR_EXE is None:
-        raise ValueError("minor entry point not found on %PATH%/$PATH")
-
-    subprocess.check_call([MINOR_EXE, "-h"])
+    subprocess.check_call(f"{MINOR_ENTRY_POINT} -h", shell=True)
 
     if MIGRATING:
         print("This is a migration, skipping test suite! Put it back later!", flush=True)
