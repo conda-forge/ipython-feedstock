@@ -1,4 +1,4 @@
-{% set version = "8.7.0" %}
+{% set version = "8.8.0" %}
 
 {% set migrating = false %}
 
@@ -8,10 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 882899fe78d5417a0aa07f995db298fa28b58faeba2112d2e3a4c95fe14bb738
-  patches:
-    - 0000-no-minor-entry-point.patch
-    {% if version == "8.7.0" %}- 0001-restore-pygments-lexers.patch{% endif %}
+  sha256: f3bf2c08505ad2c3f4ed5c46ae0331a8547d36bf4b21a451e8ae80c0791db95b
 
 build:
   number: 0
@@ -27,15 +24,12 @@ build:
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
-    # provided by _ipython_minor_entry_point
-    # ipython3.X = IPython:start_ipython
 
 requirements:
   host:
     - pip
     - python >=3.8
   run:
-    - _ipython_minor_entry_point =={{ version }}.*
     - __{{ noarch_platform }}
     - python >=3.8
     {% if noarch_platform == "osx" %}
@@ -99,8 +93,6 @@ test:
     - pygmentize -L | grep ipython
     - ipython -h
     - ipython3 -h
-    # this is tested in run_test.py
-    # - ipython3.X -h
 
 about:
   home: https://ipython.org
