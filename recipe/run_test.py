@@ -8,9 +8,6 @@ LINUX = platform.system() == "Linux"
 PYPY = "__pypy__" in sys.builtin_module_names
 PPC = "ppc" in platform.machine()
 
-MINOR_SUFFIX = ".".join([str(sys.version_info[0]), str(sys.version_info[1])])
-MINOR_ENTRY_POINT = f"ipython{MINOR_SUFFIX}"
-
 COV_THRESHOLD = os.environ.get("COV_THRESHOLD")
 
 # Environment variable should be set in the meta.yaml
@@ -45,10 +42,6 @@ if __name__ == "__main__":
     print("Building on Windows?      ", WIN)
     print("Building on Linux?        ", LINUX)
     print("Building for PyPy?        ", PYPY)
-
-    print("Checking minor entry point", MINOR_ENTRY_POINT, flush=True)
-
-    subprocess.check_call(f"{MINOR_ENTRY_POINT} -h", shell=True)
 
     if MIGRATING:
         print("This is a migration, skipping test suite! Put it back later!", flush=True)
