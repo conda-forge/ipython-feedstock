@@ -46,7 +46,7 @@ requirements:
     - pexpect >4.3
     {% endif %}
     - pickleshare
-    - prompt-toolkit >=3.0.11,<3.1.0
+    - prompt-toolkit >=3.0.30,<3.1.0
     - pygments >=2.4.0
     - stack_data
     - traitlets >=5
