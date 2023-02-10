@@ -1,4 +1,4 @@
-{% set version = "8.9.0" %}
+{% set version = "8.10.0" %}
 
 {% set migrating = false %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 71618e82e6d59487bea059626e7c79fb4a5b760d1510d02fab1160db6fdfa1f7
+  sha256: b13a1d6c1f5818bd388db53b7107d17454129a70de2b87481d555daede5eb49e
 
 build:
   number: 0
@@ -60,7 +60,7 @@ test:
     - curio
     - matplotlib-base !=3.2.0
     - nbformat
-    - numpy >=1.20
+    - numpy >=1.21
     - pandas
     - pygments
     - pytest <7
