@@ -60,7 +60,7 @@ test:
     - curio
     - matplotlib-base !=3.2.0
     - nbformat
-    - numpy >=1.20
+    - numpy >=1.21
     - pandas
     - pygments
     - pytest <7
