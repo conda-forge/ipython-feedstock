@@ -54,6 +54,8 @@ requirements:
     - typing_extensions
 
 test:
+  source_files:
+    - pyproject.toml
   requires:
     - pip
     - m2-grep  # [win]
@@ -69,6 +71,9 @@ test:
     - pytest-cov
     - testpath
     - trio
+    # mypy
+    - mypy
+    - types-decorator
     {% endif %}
 
   imports:
@@ -95,6 +100,9 @@ test:
     - pygmentize -L | grep ipython
     - ipython -h
     - ipython3 -h
+    {% if not migrating %}
+    - mypy -p IPython
+    {% endif %}
 
 about:
   home: https://ipython.org
