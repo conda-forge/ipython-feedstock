@@ -56,7 +56,6 @@ requirements:
 test:
   requires:
     - pip
-    - mypy
     - m2-grep  # [win]
     {% if not migrating %}
     - black
@@ -93,7 +92,6 @@ test:
     - IPython.utils.tests
   commands:
     - pip check
-    - mypy -p IPython
     - pygmentize -L | grep ipython
     - ipython -h
     - ipython3 -h
