@@ -19,8 +19,8 @@ build:
     - MIGRATING={{ migrating }}
     # TODO: investigate removing when some pypy/coverage speed issues are resolved
     - IPYTHON_TESTING_TIMEOUT_SCALE=10
-    - COV_THRESHOLD=70  # [unix]
-    - COV_THRESHOLD=69  # [win]
+    - COV_THRESHOLD=71  # [unix]
+    - COV_THRESHOLD=70  # [win]
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
@@ -67,7 +67,8 @@ test:
     - numpy >=1.21
     - pandas
     - pygments
-    - pytest <7
+    - pytest <7.1
+    - pytest-asyncio
     - pytest-cov
     - testpath
     - trio
