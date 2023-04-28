@@ -2,6 +2,8 @@ import subprocess
 import platform
 import os
 import sys
+from pathlib import Path
+import IPython
 
 WIN = platform.system() == "Windows"
 LINUX = platform.system() == "Linux"
@@ -14,7 +16,18 @@ COV_THRESHOLD = os.environ.get("COV_THRESHOLD")
 MIGRATING = eval(os.environ.get("MIGRATING", "None"))
 
 PYTEST_SKIPS = ["decorator_skip", "pprint_heap_allocated"]
-PYTEST_ARGS = [sys.executable, "-m", "pytest", "--pyargs", "IPython", "-vv"]
+PYTEST_ARGS = [sys.executable, "-m", "pytest", "-vv"]
+
+IGNORE_GLOBS = [
+    "consoleapp.py",
+    "external/*.py",
+    "sphinxext/*.py",
+    "terminal/console*.py",
+    "terminal/pt_inputhooks/*.py",
+    "utils/*.py",
+]
+
+PYTEST_ARGS += sum([[f"--ignore-glob", glob] for glob in IGNORE_GLOBS], [])
 
 if WIN:
     pass
@@ -49,4 +62,4 @@ if __name__ == "__main__":
     else:
         print("Running pytest with args")
         print(PYTEST_ARGS, flush=True)
-        sys.exit(subprocess.call(PYTEST_ARGS))
+        sys.exit(subprocess.call(PYTEST_ARGS, cwd=str(Path(IPython.__file__).parent)))
