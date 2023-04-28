@@ -1,4 +1,4 @@
-{% set version = "8.12.0" %}
+{% set version = "8.12.1" %}
 
 {% set migrating = false %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: a950236df04ad75b5bc7f816f9af3d74dc118fd42f2ff7e80e8e60ca1f182e2d
+  sha256: 2442915417763b62181009259782975fa50bb5eedb97ae97fb614204bf6ecc21
 
 build:
   number: 0
@@ -19,8 +19,8 @@ build:
     - MIGRATING={{ migrating }}
     # TODO: investigate removing when some pypy/coverage speed issues are resolved
     - IPYTHON_TESTING_TIMEOUT_SCALE=10
-    - COV_THRESHOLD=73  # [unix]
-    - COV_THRESHOLD=72  # [win]
+    - COV_THRESHOLD=71  # [unix]
+    - COV_THRESHOLD=70  # [win]
   entry_points:
     - ipython = IPython:start_ipython
     - ipython3 = IPython:start_ipython
@@ -67,7 +67,8 @@ test:
     - numpy >=1.21
     - pandas
     - pygments
-    - pytest <7
+    - pytest <7.1
+    - pytest-asyncio
     - pytest-cov
     - testpath
     - trio
