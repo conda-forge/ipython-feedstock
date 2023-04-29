@@ -1,4 +1,4 @@
-{% set version = "8.12.1" %}
+{% set version = "8.13.1" %}
 
 {% set migrating = false %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 2442915417763b62181009259782975fa50bb5eedb97ae97fb614204bf6ecc21
+  sha256: 9c8487ac18f330c8a683fc50ab6d7bc0fcf9ef1d7a9f6ce7926938261067b81f
 
 build:
   number: 0
@@ -28,11 +28,11 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python >=3.9
     - setuptools >=51.0.0
   run:
     - __{{ noarch_platform }}
-    - python >=3.8
+    - python >=3.9
     {% if noarch_platform == "osx" %}
     - appnope
     {% endif %}
