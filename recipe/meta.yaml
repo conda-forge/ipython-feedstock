@@ -28,11 +28,11 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python >=3.9
     - setuptools >=51.0.0
   run:
     - __{{ noarch_platform }}
-    - python >=3.8
+    - python >=3.9
     {% if noarch_platform == "osx" %}
     - appnope
     {% endif %}
