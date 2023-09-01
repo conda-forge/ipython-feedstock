@@ -41,6 +41,7 @@ requirements:
     - colorama
     {% endif %}
     - decorator
+    - exceptiongroup
     - jedi >=0.16
     - matplotlib-inline
     {% if noarch_platform != "win" %}
