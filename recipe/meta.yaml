@@ -102,7 +102,7 @@ test:
     - pygmentize -L | grep ipython
     - ipython -h
     - ipython3 -h
-    {% if not migrating and version != "8.16.0" %}
+    {% if not migrating %}
     - mypy -p IPython || exit 0
     {% endif %}
 
