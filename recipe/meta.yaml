@@ -36,7 +36,6 @@ requirements:
     {% if noarch_platform == "osx" %}
     - appnope
     {% endif %}
-    - backcall
     {% if noarch_platform == "win" %}
     - colorama
     {% endif %}
