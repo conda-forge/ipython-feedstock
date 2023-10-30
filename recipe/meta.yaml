@@ -66,6 +66,7 @@ test:
     - matplotlib-base !=3.2.0
     - nbformat
     - numpy >=1.21
+    - pickleshare
     - pandas
     - pygments
     - pytest <7.1
