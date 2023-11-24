@@ -33,9 +33,6 @@ requirements:
   run:
     - __{{ noarch_platform }}
     - python >=3.9
-    {% if noarch_platform == "osx" %}
-    - appnope
-    {% endif %}
     {% if noarch_platform == "win" %}
     - colorama
     {% endif %}
