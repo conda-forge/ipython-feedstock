@@ -11,14 +11,12 @@ source:
   sha256: 4feb61210160f75e229ce932dbf8b719bff37af123c0b985fd038b14233daa16
 
 build:
-  number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  number: 1
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
   noarch: python
   script_env:
     - MIGRATING={{ migrating }}
-    # TODO: investigate removing when some pypy/coverage speed issues are resolved
-    - IPYTHON_TESTING_TIMEOUT_SCALE=10
     - COV_THRESHOLD=71  # [unix]
     - COV_THRESHOLD=70  # [win]
   entry_points:
