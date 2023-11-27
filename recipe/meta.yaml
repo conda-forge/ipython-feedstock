@@ -1,4 +1,4 @@
-{% set version = "8.18.0" %}
+{% set version = "8.18.1" %}
 
 {% set migrating = false %}
 
@@ -8,17 +8,15 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 4feb61210160f75e229ce932dbf8b719bff37af123c0b985fd038b14233daa16
+  sha256: ca6f079bb33457c66e233e4580ebfc4128855b4cf6370dddd73842a9563e8a27
 
 build:
-  number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  number: 1
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
   noarch: python
   script_env:
     - MIGRATING={{ migrating }}
-    # TODO: investigate removing when some pypy/coverage speed issues are resolved
-    - IPYTHON_TESTING_TIMEOUT_SCALE=10
     - COV_THRESHOLD=71  # [unix]
     - COV_THRESHOLD=70  # [win]
   entry_points:
@@ -33,9 +31,6 @@ requirements:
   run:
     - __{{ noarch_platform }}
     - python >=3.9
-    {% if noarch_platform == "osx" %}
-    - appnope
-    {% endif %}
     {% if noarch_platform == "win" %}
     - colorama
     {% endif %}
@@ -47,7 +42,7 @@ requirements:
     - pexpect >4.3
     {% endif %}
     - pickleshare
-    - prompt_toolkit >=3.0.30,<3.1.0,!=3.0.37
+    - prompt-toolkit >=3.0.30,<3.1.0,!=3.0.37
     - pygments >=2.4.0
     - stack_data
     - traitlets >=5
