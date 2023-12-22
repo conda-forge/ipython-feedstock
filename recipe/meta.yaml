@@ -1,4 +1,4 @@
-{% set version = "8.18.1" %}
+{% set version = "8.19.0" %}
 
 {% set migrating = false %}
 
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: ca6f079bb33457c66e233e4580ebfc4128855b4cf6370dddd73842a9563e8a27
+  sha256: ac4da4ecf0042fb4e0ce57c60430c2db3c719fa8bdf92f8631d6bd8a5785d1f0
 
 build:
-  number: 3
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
   noarch: python
@@ -26,12 +26,12 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.9
+    - python >=3.10
     - setuptools >=51.0.0
   run:
     - __unix          # [unix]
     - __win           # [win]
-    - python >=3.9
+    - python >=3.10
     - colorama        # [win]
     - decorator
     - exceptiongroup
@@ -56,11 +56,11 @@ test:
     - curio
     - matplotlib-base !=3.2.0
     - nbformat
-    - numpy >=1.21
+    - numpy >=1.23
     - pandas
     - pickleshare
     - pygments
-    - pytest <7.1
+    - pytest
     - pytest-asyncio <0.22
     - pytest-cov
     - testpath
