@@ -26,12 +26,12 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.9
+    - python >=3.10
     - setuptools >=51.0.0
   run:
     - __unix          # [unix]
     - __win           # [win]
-    - python >=3.9
+    - python >=3.10
     - colorama        # [win]
     - decorator
     - exceptiongroup
@@ -56,11 +56,11 @@ test:
     - curio
     - matplotlib-base !=3.2.0
     - nbformat
-    - numpy >=1.21
+    - numpy >=1.23
     - pandas
     - pickleshare
     - pygments
-    - pytest <7.1
+    - pytest
     - pytest-asyncio <0.22
     - pytest-cov
     - testpath
