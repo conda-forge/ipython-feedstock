@@ -1,4 +1,4 @@
-{% set version = "8.20.0" %}
+{% set version = "8.21.0" %}
 
 {% set migrating = false %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 2f21bd3fc1d51550c89ee3944ae04bbc7bc79e129ea0937da6e6c68bfdbf117a
+  sha256: 48fbc236fbe0e138b88773fa0437751f14c3645fb483f1d4c5dee58b37e5ce73
 
 build:
   number: 0
@@ -60,7 +60,7 @@ test:
     - pandas
     - pickleshare
     - pygments
-    - pytest
+    - pytest <8
     - pytest-asyncio <0.22
     - pytest-cov
     - testpath
