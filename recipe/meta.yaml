@@ -60,7 +60,7 @@ test:
     - pandas
     - pickleshare
     - pygments
-    - pytest
+    - pytest <8
     - pytest-asyncio <0.22
     - pytest-cov
     - testpath
