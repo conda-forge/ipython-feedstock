@@ -1,4 +1,4 @@
-{% set version = "8.23.0" %}
+{% set version = "8.24.0" %}
 
 {% set migrating = false %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 7468edaf4f6de3e1b912e57f66c241e6fd3c7099f2ec2136e239e142e800274d
+  sha256: 010db3f8a728a578bb641fdd06c063b9fb8e96a9464c63aec6310fbcb5e80501
 
 build:
   number: 0
@@ -43,7 +43,7 @@ requirements:
     - pygments >=2.4.0
     - stack_data
     - traitlets >=5.13.0
-    - typing_extensions
+    - typing_extensions >=4.6
 
 test:
   source_files:
@@ -60,7 +60,7 @@ test:
     - pandas
     - pickleshare
     - pygments
-    - pytest <8
+    - pytest
     - pytest-asyncio <0.22
     - pytest-cov
     - testpath
