@@ -16,7 +16,7 @@ COV_THRESHOLD = os.environ.get("COV_THRESHOLD")
 MIGRATING = eval(os.environ.get("MIGRATING", "None"))
 
 PYTEST_SKIPS = ["decorator_skip", "pprint_heap_allocated"]
-PYTEST_ARGS = [sys.executable, "-m", "pytest", "-vv"]
+PYTEST_ARGS = [sys.executable, "-m", "pytest", "-vv", "--color=yes", "--tb=long"]
 
 IGNORE_GLOBS = [
     "consoleapp.py",
