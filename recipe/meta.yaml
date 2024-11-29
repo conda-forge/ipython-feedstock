@@ -1,14 +1,14 @@
-{% set version = "8.29.0" %}
+{% set version = "8.30.0" %}
 
-{% set migrating = false %}
+{% set python_min = python_min | default("3.10") %}
 
 package:
   name: ipython
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: 40b60e15b22591450eef73e40a027cf77bd652e757523eebc5bd7c7c498290eb
+  url: https://pypi.org/packages/source/i/ipython/ipython-{{ version }}.tar.gz
+  sha256: cb0a405a306d2995a5cbb9901894d240784a9f341394c6ba3f4fe8c6eb89ff6e
 
 build:
   number: 0
@@ -16,7 +16,6 @@ build:
 
   noarch: python
   script_env:
-    - MIGRATING={{ migrating }}
     - COV_THRESHOLD=71  # [unix]
     - COV_THRESHOLD=70  # [win]
   entry_points:
@@ -26,13 +25,13 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.10
+    - python {{ python_min }}
     - setuptools >=61.2
   run:
     - __unix          # [unix]
     - __win           # [win]
-    - python >=3.10
     - colorama        # [win]
+    - python >={{ python_min }}
     - decorator
     - exceptiongroup
     - jedi >=0.16
@@ -49,9 +48,16 @@ test:
   source_files:
     - pyproject.toml
   requires:
+    # pip check
     - pip
+    # CFEP-25 minimum python
+    - python {{ python_min }}
+    # mypy
+    - mypy
+    - types-decorator
+    # windows
     - m2-grep  # [win]
-    {% if not migrating %}
+    # actual test deps
     - black
     - curio
     - matplotlib-base !=3.2.0
@@ -65,10 +71,6 @@ test:
     - pytest-cov
     - testpath
     - trio
-    # mypy
-    - mypy
-    - types-decorator
-    {% endif %}
 
   imports:
     - IPython
@@ -94,9 +96,7 @@ test:
     - pygmentize -L | grep ipython
     - ipython -h
     - ipython3 -h
-    {% if not migrating %}
     - mypy -p IPython || exit 0
-    {% endif %}
 
 about:
   home: https://ipython.org
