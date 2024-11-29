@@ -12,9 +12,6 @@ PPC = "ppc" in platform.machine()
 
 COV_THRESHOLD = os.environ.get("COV_THRESHOLD")
 
-# Environment variable should be set in the meta.yaml
-MIGRATING = eval(os.environ.get("MIGRATING", "None"))
-
 PYTEST_SKIPS = ["decorator_skip", "pprint_heap_allocated"]
 PYTEST_ARGS = [sys.executable, "-m", "pytest", "-vv", "--color=yes", "--tb=long"]
 
@@ -56,10 +53,6 @@ if __name__ == "__main__":
     print("Building on Linux?        ", LINUX)
     print("Building for PyPy?        ", PYPY)
 
-    if MIGRATING:
-        print("This is a migration, skipping test suite! Put it back later!", flush=True)
-        sys.exit(0)
-    else:
-        print("Running pytest with args")
-        print(PYTEST_ARGS, flush=True)
-        sys.exit(subprocess.call(PYTEST_ARGS, cwd=str(Path(IPython.__file__).parent)))
+    print("Running pytest with args")
+    print(PYTEST_ARGS, flush=True)
+    sys.exit(subprocess.call(PYTEST_ARGS, cwd=str(Path(IPython.__file__).parent)))
