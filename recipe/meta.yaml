@@ -1,5 +1,7 @@
 {% set version = "8.30.0" %}
 
+{% set python_min = python_min | default("3.10") %}
+
 {% set migrating = false %}
 
 package:
@@ -26,12 +28,12 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.10
+    - python {{ python_min }}
     - setuptools >=61.2
   run:
     - __unix          # [unix]
     - __win           # [win]
-    - python >=3.10
+    - python >={{ python_min }}
     - colorama        # [win]
     - decorator
     - exceptiongroup
@@ -50,6 +52,7 @@ test:
     - pyproject.toml
   requires:
     - pip
+    - python {{ python_min }}
     - m2-grep  # [win]
     {% if not migrating %}
     - black
