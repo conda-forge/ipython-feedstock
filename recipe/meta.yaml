@@ -1,4 +1,4 @@
-{% set version = "8.30.0" %}
+{% set version = "8.31.0" %}
 
 {% set python_min = python_min | default("3.10") %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-{{ version }}.tar.gz
-  sha256: cb0a405a306d2995a5cbb9901894d240784a9f341394c6ba3f4fe8c6eb89ff6e
+  sha256: b6a2274606bec6166405ff05e54932ed6e5cfecaca1fc05f2cacde7bb074d70b
 
 build:
   number: 0
