@@ -158,8 +158,10 @@ Feedstock Maintainers
 * [@ellisonbg](https://github.com/ellisonbg/)
 * [@fperez](https://github.com/fperez/)
 * [@jakirkham](https://github.com/jakirkham/)
+* [@krassowski](https://github.com/krassowski/)
 * [@minrk](https://github.com/minrk/)
 * [@ocefpaf](https://github.com/ocefpaf/)
 * [@pelson](https://github.com/pelson/)
 * [@takluyver](https://github.com/takluyver/)
+* [@trallard](https://github.com/trallard/)
 
