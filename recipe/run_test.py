@@ -39,7 +39,7 @@ if PPC:
 
 if COV_THRESHOLD is not None:
     PYTEST_ARGS += [
-        "--cov", "IPython", "--no-cov-on-fail", "--cov-fail-under", COV_THRESHOLD,
+        "--cov", "IPython", "--no-cov-on-fail", "--cov-fail-under", f"{COV_THRESHOLD}",
         "--cov-report", "term-missing:skip-covered"
     ]
 
