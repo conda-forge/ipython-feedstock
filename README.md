@@ -3,7 +3,7 @@ About ipython-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ipython-feedstock/blob/main/LICENSE.txt)
 
-Home: https://ipython.org
+Home: https://ipython.org/
 
 Package license: BSD-3-Clause
 
@@ -11,12 +11,11 @@ Summary: IPython: Productive Interactive Computing
 
 Development: https://github.com/ipython/ipython
 
-Documentation: https://ipython.readthedocs.io
+Documentation: https://ipython.readthedocs.io/
 
 IPython provides a rich architecture for interactive computing with
 a powerful interactive shell, a kernel for Jupyter, high performance
 tools for parallel computing, and more.
-
 
 Current build status
 ====================

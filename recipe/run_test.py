@@ -10,7 +10,7 @@ LINUX = platform.system() == "Linux"
 PYPY = "__pypy__" in sys.builtin_module_names
 PPC = "ppc" in platform.machine()
 
-COV_THRESHOLD = os.environ.get("COV_THRESHOLD")
+COV_THRESHOLD = 61 if WIN else 62
 
 PYTEST_SKIPS = ["decorator_skip", "pprint_heap_allocated"]
 PYTEST_ARGS = [sys.executable, "-m", "pytest", "-vv", "--color=yes", "--tb=long"]
@@ -39,7 +39,7 @@ if PPC:
 
 if COV_THRESHOLD is not None:
     PYTEST_ARGS += [
-        "--cov", "IPython", "--no-cov-on-fail", "--cov-fail-under", COV_THRESHOLD,
+        "--cov", "IPython", "--no-cov-on-fail", "--cov-fail-under", f"{COV_THRESHOLD}",
         "--cov-report", "term-missing:skip-covered"
     ]
 
