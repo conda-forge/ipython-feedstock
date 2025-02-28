@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: 8.32.0
+  version: "9.0.0"
 
 package:
   name: ipython
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-${{ version }}.tar.gz
-  sha256: be2c91895b0b9ea7ba49d33b23e2040c352b33eb6a519cca7ce6e0c743444251
+  sha256: 9368d65b3d4a471e9a698fed3ea486bbf6737e45111e915279c971b77f974397
 
 build:
   number: 0
