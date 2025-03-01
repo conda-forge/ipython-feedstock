@@ -37,7 +37,7 @@ requirements:
         - colorama
     - decorator
     - exceptiongroup
-    - ipython-pygments-lexers
+    - ipython_pygments_lexers
     - jedi >=0.16
     - matplotlib-inline
     - pickleshare
