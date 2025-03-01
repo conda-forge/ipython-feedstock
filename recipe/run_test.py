@@ -15,11 +15,10 @@ UNLINK = [
     # https://github.com/conda-forge/ipython-feedstock/pull/231
     "test_zzz_autoreload.py",
 ]
-
 if LINUX:
     PYTEST_SKIPS += ["system_interrupt"]
 
-PYTEST_ARGS = ["pytest", "-vv", "--color=yes", "--tb=long"]
+PYTEST_ARGS = ["pytest", "-vv", "--color=yes", "--tb=long", "tests"]
 
 if len(PYTEST_SKIPS) == 1:
     PYTEST_ARGS += ["-k", f"not {PYTEST_SKIPS[0]}"]
@@ -27,13 +26,18 @@ elif PYTEST_SKIPS:
     PYTEST_ARGS += ["-k", f"""not ({" or ".join(PYTEST_SKIPS)})"""]
 
 COV = [sys.executable, "-m", "coverage"]
-COV_RUN = [*COV, "run", "--source", "IPython", "--branch", "-m", *PYTEST_ARGS]
+COV_RUN = [*COV, "run", "--source", "IPython", "--branch", "--append", "-m"]
 COV_REPORT = [
     *COV,
     "report",
     "--show-missing",
     "--skip-covered",
     f"--fail-under={COV_THRESHOLD}",
+]
+COV_RUNS = [
+    [*COV_RUN, "IPython", "--version"],
+    [*COV_RUN, "IPython", "--help"],
+    [*COV_RUN, *PYTEST_ARGS],
 ]
 
 
@@ -49,7 +53,7 @@ def main() -> int:
         path = (Path("tests") / stem).unlink()
         print("... removing", path)
 
-    return any(map(do, [COV_RUN, COV_REPORT]))
+    return any(map(do, [*COV_RUNS, COV_REPORT]))
 
 
 if __name__ == "__main__":

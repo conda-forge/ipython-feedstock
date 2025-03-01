@@ -4,7 +4,7 @@ schema_version: 1
 context:
   version: "9.0.0"
 
-package:
+recipe:
   name: ipython
   version: ${{ version }}
 
@@ -15,82 +15,106 @@ source:
 build:
   number: 0
   noarch: python
-  script:
-    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
-  python:
-    entry_points:
-      - ipython = IPython:start_ipython
-      - ipython3 = IPython:start_ipython
 
-requirements:
-  host:
-    - pip
-    - python ${{ python_min }}.*
-    - setuptools >=61.2
-  run:
-    - if: unix
-      then:
-        - __unix
-        - pexpect >4.3
-      else:
-        - __win
-        - colorama
-    - decorator
-    - exceptiongroup
-    - ipython_pygments_lexers
-    - jedi >=0.16
-    - matplotlib-inline
-    - pickleshare
-    - prompt-toolkit >=3.0.41,<3.1.0
-    - pygments >=2.4.0
-    - python >=${{ python_min }}
-    - stack_data
-    - traitlets >=5.13.0
-    - typing_extensions >=4.6
+outputs:
+  - package:
+      name: ipython
+    build:
+      noarch: python
+      script:
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+      python:
+        entry_points:
+          - ipython = IPython:start_ipython
+          - ipython3 = IPython:start_ipython
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - setuptools >=61.2
+      run:
+        - if: unix
+          then:
+            - __unix
+            - pexpect >4.3
+          else:
+            - __win
+            - colorama
+        - decorator
+        - exceptiongroup
+        - ipython_pygments_lexers
+        - jedi >=0.16
+        - matplotlib-inline
+        - pickleshare
+        - prompt-toolkit >=3.0.41,<3.1.0
+        - pygments >=2.4.0
+        - python >=${{ python_min }}
+        - stack_data
+        - traitlets >=5.13.0
+        - typing_extensions >=4.6
+    tests:
+      - python:
+          pip_check: true
+          python_version: ${{ python_min }}.*
+          imports: IPython
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - ipython --version
+          - ipython3 --version
+          - ipython --help
+          - pygmentize -L | grep ipython
 
-tests:
-  - python:
-      pip_check: true
-      python_version: ${{ python_min }}.*
-      imports: IPython
-  - python:
-      pip_check: true
-      python_version: "!=${{ python_min }}.*"
-      imports: IPython
-  - files:
-      recipe:
-        - run_test.py
-      source:
-        - tests/
-        - pyproject.toml
+  - package:
+      name: ipython-tests
+    build:
+      noarch: generic
     requirements:
       run:
-        # mypy
-        - mypy
-        - types-decorator
-        # actual test deps
-        - black
-        - curio
-        - matplotlib-base !=3.2.0
-        - nbformat
-        - numpy >=1.23
-        - pandas
-        - pickleshare
-        - pygments
-        - pytest
-        - pytest-asyncio <0.22
-        - pytest-cov
-        - testpath
-        - trio
-        - if: win
-          then:
-            - m2-grep
-    script:
-      - pygmentize -L | grep ipython
-      - ipython -h
-      - ipython3 -h
-      - mypy -p IPython
-      - python run_test.py
+        - ${{ pin_subpackage("ipython", exact=True) }}
+    tests:
+      - python:
+          python_version: 3.13.*
+          pip_check: true
+          imports: IPython
+      - files:
+          recipe:
+            - run_test.py
+          source:
+            - tests/
+            - pyproject.toml
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+            # mypy
+            - mypy
+            - types-decorator
+            # coverage
+            - coverage
+            # actual test deps
+            - black
+            - curio
+            - matplotlib-base !=3.2.0
+            - nbformat
+            - numpy >=1.23
+            - pandas
+            - pickleshare
+            - pygments
+            - pytest
+            - pytest-asyncio <0.22
+            - testpath
+            - trio
+            - if: win
+              then:
+                - m2-grep
+        script:
+          - ipython --version
+          - ipython3 --version
+          - ipython --help
+          - pygmentize -L | grep ipython
+          - mypy -p IPython
+          - python run_test.py
 
 about:
   license: BSD-3-Clause
@@ -105,6 +129,7 @@ about:
     tools for parallel computing, and more.
 
 extra:
+  feedstock-name: ipython
   recipe-maintainers:
     - Carreau
     - jakirkham
