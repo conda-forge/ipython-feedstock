@@ -101,7 +101,7 @@ tests:
       - pygmentize -L | grep ipython
       - ipython -h
       - ipython3 -h
-      - mypy -p IPython || exit 0
+      - mypy -p IPython
       - python run_test.py
 
 about:
