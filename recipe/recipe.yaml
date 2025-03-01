@@ -85,7 +85,7 @@ outputs:
             - mypy
             - types-decorator
             # coverage
-            - coverage
+            - pytest-cov
             # actual test deps
             - black
             - curio
