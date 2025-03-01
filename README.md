@@ -35,7 +35,6 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-_ipython_tests-green.svg)](https://anaconda.org/conda-forge/_ipython_tests) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/_ipython_tests.svg)](https://anaconda.org/conda-forge/_ipython_tests) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/_ipython_tests.svg)](https://anaconda.org/conda-forge/_ipython_tests) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/_ipython_tests.svg)](https://anaconda.org/conda-forge/_ipython_tests) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ipython-green.svg)](https://anaconda.org/conda-forge/ipython) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ipython.svg)](https://anaconda.org/conda-forge/ipython) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ipython.svg)](https://anaconda.org/conda-forge/ipython) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ipython.svg)](https://anaconda.org/conda-forge/ipython) |
 
 Installing ipython
@@ -48,41 +47,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `_ipython_tests, ipython` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `ipython` can be installed with `conda`:
 
 ```
-conda install _ipython_tests ipython
-```
-
-or with `mamba`:
-
-```
-mamba install _ipython_tests ipython
-```
-
-It is possible to list all of the versions of `_ipython_tests` available on your platform with `conda`:
-
-```
-conda search _ipython_tests --channel conda-forge
+conda install ipython
 ```
 
 or with `mamba`:
 
 ```
-mamba search _ipython_tests --channel conda-forge
+mamba install ipython
+```
+
+It is possible to list all of the versions of `ipython` available on your platform with `conda`:
+
+```
+conda search ipython --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search ipython --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search _ipython_tests --channel conda-forge
+mamba repoquery search ipython --channel conda-forge
 
-# List packages depending on `_ipython_tests`:
-mamba repoquery whoneeds _ipython_tests --channel conda-forge
+# List packages depending on `ipython`:
+mamba repoquery whoneeds ipython --channel conda-forge
 
-# List dependencies of `_ipython_tests`:
-mamba repoquery depends _ipython_tests --channel conda-forge
+# List dependencies of `ipython`:
+mamba repoquery depends ipython --channel conda-forge
 ```
 
 
