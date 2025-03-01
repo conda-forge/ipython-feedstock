@@ -1,60 +1,62 @@
 import subprocess
 import platform
-from pathlib import Path
 import sys
+from pathlib import Path
+import IPython
 
 WIN = platform.system() == "Windows"
 LINUX = platform.system() == "Linux"
+PYPY = "__pypy__" in sys.builtin_module_names
+PPC = "ppc" in platform.machine()
 
-COV_THRESHOLD = 58
-PYTEST_SKIPS = [
-    "decorator_skip",
-    "pprint_heap_allocated",
+COV_THRESHOLD = 61 if WIN else 62
+
+PYTEST_SKIPS = ["decorator_skip", "pprint_heap_allocated"]
+PYTEST_ARGS = [sys.executable, "-m", "pytest", "-vv", "--color=yes", "--tb=long"]
+
+IGNORE_GLOBS = [
+    "consoleapp.py",
+    "external/*.py",
+    "sphinxext/*.py",
+    "terminal/console*.py",
+    "terminal/pt_inputhooks/*.py",
+    "utils/*.py",
 ]
-UNLINK = [
-    # https://github.com/conda-forge/ipython-feedstock/pull/231
-    "test_zzz_autoreload.py",
-]
+
+PYTEST_ARGS += sum([["--ignore-glob", glob] for glob in IGNORE_GLOBS], [])
+
+if WIN:
+    pass
+else:
+    pass
+
 if LINUX:
     PYTEST_SKIPS += ["system_interrupt"]
 
-PYTEST_ARGS = ["pytest", "-vv", "--color=yes", "--tb=long", "tests"]
+if PPC:
+    PYTEST_SKIPS += ["ipython_dir_8", "audio_data"]
+
+if COV_THRESHOLD is not None:
+    PYTEST_ARGS += [
+        "--cov",
+        "IPython",
+        "--no-cov-on-fail",
+        "--cov-fail-under",
+        f"{COV_THRESHOLD}",
+        "--cov-report",
+        "term-missing:skip-covered",
+    ]
 
 if len(PYTEST_SKIPS) == 1:
     PYTEST_ARGS += ["-k", f"not {PYTEST_SKIPS[0]}"]
 elif PYTEST_SKIPS:
     PYTEST_ARGS += ["-k", f"""not ({" or ".join(PYTEST_SKIPS)})"""]
 
-COV = [sys.executable, "-m", "coverage"]
-COV_RUN = [*COV, "run", "--source", "IPython", "--branch", "--append", "-m"]
-COV_REPORT = [
-    *COV,
-    "report",
-    "--show-missing",
-    "--skip-covered",
-    f"--fail-under={COV_THRESHOLD}",
-]
-COV_RUNS = [
-    [*COV_RUN, "IPython", "--version"],
-    [*COV_RUN, "IPython", "--help"],
-    [*COV_RUN, *PYTEST_ARGS],
-]
-
-
-def do(args: list[str]) -> int:
-    print(">>>", *args, flush=True)
-    return subprocess.call(args)
-
-
-def main() -> int:
-    print("Testing on Windows?      ", WIN)
-    print("Testing on Linux?        ", LINUX)
-    for stem in UNLINK:
-        path = (Path("tests") / stem).unlink()
-        print("... removing", path)
-
-    return any(map(do, [*COV_RUNS, COV_REPORT]))
-
-
 if __name__ == "__main__":
-    sys.exit(main())
+    print("Building on Windows?      ", WIN)
+    print("Building on Linux?        ", LINUX)
+    print("Building for PyPy?        ", PYPY)
+
+    print("Running pytest with args")
+    print(PYTEST_ARGS, flush=True)
+    sys.exit(subprocess.call(PYTEST_ARGS, cwd=str(Path(IPython.__file__).parent)))
