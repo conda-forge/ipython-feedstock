@@ -1,6 +1,5 @@
 import subprocess
 import platform
-import os
 import sys
 from pathlib import Path
 import IPython
@@ -24,7 +23,7 @@ IGNORE_GLOBS = [
     "utils/*.py",
 ]
 
-PYTEST_ARGS += sum([[f"--ignore-glob", glob] for glob in IGNORE_GLOBS], [])
+PYTEST_ARGS += sum([["--ignore-glob", glob] for glob in IGNORE_GLOBS], [])
 
 if WIN:
     pass
@@ -39,14 +38,19 @@ if PPC:
 
 if COV_THRESHOLD is not None:
     PYTEST_ARGS += [
-        "--cov", "IPython", "--no-cov-on-fail", "--cov-fail-under", f"{COV_THRESHOLD}",
-        "--cov-report", "term-missing:skip-covered"
+        "--cov",
+        "IPython",
+        "--no-cov-on-fail",
+        "--cov-fail-under",
+        f"{COV_THRESHOLD}",
+        "--cov-report",
+        "term-missing:skip-covered",
     ]
 
 if len(PYTEST_SKIPS) == 1:
     PYTEST_ARGS += ["-k", f"not {PYTEST_SKIPS[0]}"]
 elif PYTEST_SKIPS:
-    PYTEST_ARGS += ["-k", f"""not ({" or ".join(PYTEST_SKIPS) })"""]
+    PYTEST_ARGS += ["-k", f"""not ({" or ".join(PYTEST_SKIPS)})"""]
 
 if __name__ == "__main__":
     print("Building on Windows?      ", WIN)

@@ -35,14 +35,15 @@ requirements:
       else:
         - __win
         - colorama
-    - python >=${{ python_min }}
     - decorator
     - exceptiongroup
+    - ipython-pygments-lexers
     - jedi >=0.16
     - matplotlib-inline
     - pickleshare
     - prompt-toolkit >=3.0.41,<3.1.0
     - pygments >=2.4.0
+    - python >=${{ python_min }}
     - stack_data
     - traitlets >=5.13.0
     - typing_extensions >=4.6
@@ -55,25 +56,20 @@ tests:
         - IPython
         - IPython.core
         - IPython.core.magics
-        - IPython.core.tests
         - IPython.extensions
-        - IPython.extensions.tests
         - IPython.external
         - IPython.lib
-        - IPython.lib.tests
         - IPython.sphinxext
         - IPython.terminal
         - IPython.terminal.pt_inputhooks
-        - IPython.terminal.tests
         - IPython.testing
         - IPython.testing.plugin
-        - IPython.testing.tests
         - IPython.utils
-        - IPython.utils.tests
   - files:
       recipe:
         - run_test.py
       source:
+        - tests/
         - pyproject.toml
     requirements:
       run:
