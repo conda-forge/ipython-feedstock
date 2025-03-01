@@ -69,15 +69,7 @@ outputs:
           - ipython3 --version
           - ipython --help
           - pygmentize -L | grep ipython
-
-  - package:
-      name: _ipython_tests
-    build:
-      noarch: generic
-    requirements:
-      run:
-        - ${{ pin_subpackage("ipython", exact=True) }}
-    tests:
+      # TODO: unvendor tests as separate package
       - files:
           recipe:
             - run_test.py
