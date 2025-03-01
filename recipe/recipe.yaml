@@ -64,6 +64,9 @@ outputs:
       - requirements:
           run:
             - python ${{ python_min }}.*
+            - if: win
+              then:
+                - m2-grep
         script:
           - ipython --version
           - ipython3 --version
@@ -97,9 +100,6 @@ outputs:
             - pytest-asyncio <0.22
             - testpath
             - trio
-            - if: win
-              then:
-                - m2-grep
         script:
           - mypy -p IPython
           - python run_test.py
