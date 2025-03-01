@@ -67,7 +67,7 @@ outputs:
           - pygmentize -L | grep ipython
 
   - package:
-      name: ipython-tests
+      name: _ipython_tests
     build:
       noarch: generic
     requirements:
