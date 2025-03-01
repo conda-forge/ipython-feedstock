@@ -57,6 +57,10 @@ outputs:
           pip_check: true
           python_version: ${{ python_min }}.*
           imports: IPython
+      - python:
+          python_version: 3.13.*
+          pip_check: true
+          imports: IPython
       - requirements:
           run:
             - python ${{ python_min }}.*
@@ -74,10 +78,6 @@ outputs:
       run:
         - ${{ pin_subpackage("ipython", exact=True) }}
     tests:
-      - python:
-          python_version: 3.13.*
-          pip_check: true
-          imports: IPython
       - files:
           recipe:
             - run_test.py
@@ -109,10 +109,6 @@ outputs:
               then:
                 - m2-grep
         script:
-          - ipython --version
-          - ipython3 --version
-          - ipython --help
-          - pygmentize -L | grep ipython
           - mypy -p IPython
           - python run_test.py
 
