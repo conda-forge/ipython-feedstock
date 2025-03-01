@@ -6,7 +6,7 @@ import sys
 WIN = platform.system() == "Windows"
 LINUX = platform.system() == "Linux"
 
-COV_THRESHOLD = 57 if WIN else 58
+COV_THRESHOLD = 58
 PYTEST_SKIPS = [
     "decorator_skip",
     "pprint_heap_allocated",

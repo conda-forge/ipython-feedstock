@@ -52,19 +52,11 @@ tests:
   - python:
       pip_check: true
       python_version: ${{ python_min }}.*
-      imports:
-        - IPython
-        - IPython.core
-        - IPython.core.magics
-        - IPython.extensions
-        - IPython.external
-        - IPython.lib
-        - IPython.sphinxext
-        - IPython.terminal
-        - IPython.terminal.pt_inputhooks
-        - IPython.testing
-        - IPython.testing.plugin
-        - IPython.utils
+      imports: IPython
+  - python:
+      pip_check: true
+      python_version: "!=${{ python_min }}.*"
+      imports: IPython
   - files:
       recipe:
         - run_test.py
@@ -73,12 +65,9 @@ tests:
         - pyproject.toml
     requirements:
       run:
-        # repeat pip check on unconstrained python
-        - pip
         # mypy
         - mypy
         - types-decorator
-        # windows
         # actual test deps
         - black
         - curio
@@ -97,7 +86,6 @@ tests:
           then:
             - m2-grep
     script:
-      - pip check
       - pygmentize -L | grep ipython
       - ipython -h
       - ipython3 -h
