@@ -13,7 +13,7 @@ source:
   sha256: 9368d65b3d4a471e9a698fed3ea486bbf6737e45111e915279c971b77f974397
 
 build:
-  number: 0
+  number: 1
   noarch: python
 
 outputs:
@@ -22,6 +22,8 @@ outputs:
     build:
       noarch: python
       script:
+        # TODO: fix upstream
+        - ${{ PYTHON }} -c "from pathlib import Path; Path('IPython/extensions/deduperreload/__init__.py').touch()"
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
       python:
         entry_points:

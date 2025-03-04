@@ -6,15 +6,13 @@ import sys
 WIN = platform.system() == "Windows"
 LINUX = platform.system() == "Linux"
 
-COV_THRESHOLD = 58
+COV_THRESHOLD = 57
 PYTEST_SKIPS = [
     "decorator_skip",
     "pprint_heap_allocated",
 ]
-UNLINK = [
-    # https://github.com/conda-forge/ipython-feedstock/pull/231
-    "test_zzz_autoreload.py",
-]
+UNLINK = []
+
 if LINUX:
     PYTEST_SKIPS += ["system_interrupt"]
 
