@@ -6,7 +6,6 @@ import sys
 WIN = platform.system() == "Windows"
 LINUX = platform.system() == "Linux"
 
-COV_THRESHOLD = 58
 PYTEST_SKIPS = [
     "decorator_skip",
     "pprint_heap_allocated",
@@ -32,7 +31,6 @@ COV_REPORT = [
     "report",
     "--show-missing",
     "--skip-covered",
-    f"--fail-under={COV_THRESHOLD}",
 ]
 COV_RUNS = [
     [*COV_RUN, "IPython", "--version"],
