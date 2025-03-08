@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "9.0.0"
+  version: "9.0.2"
 
 recipe:
   name: ipython
@@ -10,10 +10,10 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-${{ version }}.tar.gz
-  sha256: 9368d65b3d4a471e9a698fed3ea486bbf6737e45111e915279c971b77f974397
+  sha256: ec7b479e3e5656bf4f58c652c120494df1820f4f28f522fb7ca09e213c2aab52
 
 build:
-  number: 1
+  number: 0
   noarch: python
 
 outputs:
