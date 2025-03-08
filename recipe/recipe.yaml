@@ -22,8 +22,6 @@ outputs:
     build:
       noarch: python
       script:
-        # TODO: fix upstream
-        - ${{ PYTHON }} -c "from pathlib import Path; Path('IPython/extensions/deduperreload/__init__.py').touch()"
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
       python:
         entry_points:
