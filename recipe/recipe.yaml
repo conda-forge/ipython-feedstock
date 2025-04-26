@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "8.35.0"
+  version: "8.36.0"
 
 recipe:
   name: ipython
@@ -10,7 +10,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-${{ version }}.tar.gz
-  sha256: d200b7d93c3f5883fc36ab9ce28a18249c7706e51347681f80a0aef9895f2520
+  sha256: 24658e9fe5c5c819455043235ba59cfffded4a35936eefceceab6b192f7092ff
 
 build:
   number: 0
