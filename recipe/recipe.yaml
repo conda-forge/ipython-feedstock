@@ -53,13 +53,11 @@ outputs:
         - typing_extensions >=4.6
     tests:
       - python:
-          pip_check: true
-          python_version: ${{ python_min }}.*
           imports: IPython
-      - python:
-          python_version: 3.13.*
           pip_check: true
-          imports: IPython
+          python_version: 
+            - ${{ python_min }}.*
+            - 3.13.*
       - requirements:
           run:
             - python ${{ python_min }}.*
