@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "8.36.0"
+  version: "8.37.0"
 
 recipe:
   name: ipython
@@ -10,7 +10,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-${{ version }}.tar.gz
-  sha256: 24658e9fe5c5c819455043235ba59cfffded4a35936eefceceab6b192f7092ff
+  sha256: ca815841e1a41a1e6b73a0b08f3038af9b2252564d01fc405356d34033012216
 
 build:
   number: 0
@@ -53,13 +53,11 @@ outputs:
         - typing_extensions >=4.6
     tests:
       - python:
-          pip_check: true
-          python_version: ${{ python_min }}.*
           imports: IPython
-      - python:
-          python_version: 3.13.*
           pip_check: true
-          imports: IPython
+          python_version: 
+            - ${{ python_min }}.*
+            - 3.13.*
       - requirements:
           run:
             - python ${{ python_min }}.*
