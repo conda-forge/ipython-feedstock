@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "9.4.0"
+  version: "9.5.0"
 
 recipe:
   name: ipython
@@ -10,7 +10,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-${{ version }}.tar.gz
-  sha256: c033c6d4e7914c3d9768aabe76bbe87ba1dc66a92a05db6bfa1125d81f2ee270
+  sha256: 129c44b941fe6d9b82d36fc7a7c18127ddb1d6f02f78f867f402e2e3adde3113
 
 build:
   number: 0
@@ -95,11 +95,14 @@ outputs:
             - pickleshare
             - pygments
             - pytest
-            - pytest-asyncio <0.22
+            - pytest-asyncio
             - testpath
             - trio
         script:
-          - mypy -p IPython
+          - if: unix
+            then:
+              # win fails with e.g. _process_win32.py:172: error: "_NamedFuncPointer" has no attribute "arg_types"  [attr-defined]
+              - mypy -p IPython
           - python run_test.py
 
 about:
