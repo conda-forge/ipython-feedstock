@@ -99,7 +99,10 @@ outputs:
             - testpath
             - trio
         script:
-          - mypy -p IPython
+          - if: unix
+            then:
+              # win fails with e.g. _process_win32.py:172: error: "_NamedFuncPointer" has no attribute "arg_types"  [attr-defined]
+              - mypy -p IPython
           - python run_test.py
 
 about:
