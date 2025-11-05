@@ -4,6 +4,7 @@ schema_version: 1
 context:
   version: "9.7.0"
   python_check_max: "3.14"
+  pygments_modes: ipython ipython3 ipythonconsole ipython3console
 
 recipe:
   name: ipython
@@ -53,6 +54,7 @@ outputs:
           python_version:
             - ${{ python_min }}.*
             - ${{ python_check_max }}.*
+      # check cli without test deps
       - requirements:
           run:
             - python ${{ python_min }}.*
@@ -60,7 +62,7 @@ outputs:
           - ipython --version
           - ipython3 --version
           - ipython --help
-          - pygmentize -L | python -c "import sys; assert 'ipython' in sys.stdin.read()"
+          - pygmentize -L | python -c "import sys; p = sys.stdin.read(); assert all(m in p for m in '${{ pygments_modes }}'.split())"
       # TODO: unvendor tests as separate package
       - files:
           recipe:
@@ -91,7 +93,7 @@ outputs:
             - testpath >=0.2
             - trio >=0.1.0
         script:
-          - if: unix
+          - if: noarch_platform != "win"
             then:
               # win fails with e.g. _process_win32.py:172: error: "_NamedFuncPointer" has no attribute "arg_types"  [attr-defined]
               - mypy -p IPython
