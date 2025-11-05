@@ -1,0 +1,8 @@
+python_min:
+  - "3.11"
+noarch_platform:
+  - if: win
+    then:
+      - win
+    else:
+      - unix
