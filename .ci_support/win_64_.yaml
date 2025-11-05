@@ -2,5 +2,7 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+noarch_platform:
+- win
 python_min:
 - '3.11'
