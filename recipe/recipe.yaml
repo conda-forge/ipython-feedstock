@@ -2,7 +2,8 @@
 schema_version: 1
 
 context:
-  version: "9.6.0"
+  version: "9.7.0"
+  python_check_max: "3.14"
 
 recipe:
   name: ipython
@@ -10,7 +11,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-${{ version }}.tar.gz
-  sha256: 5603d6d5d356378be5043e69441a072b50a5b33b4503428c77b04cb8ce7bc731
+  sha256: 5f6de88c905a566c6a9d6c400a8fed54a638e1f7543d17aae2551133216b1e4e
 
 build:
   number: 0
@@ -31,25 +32,18 @@ outputs:
       host:
         - pip
         - python ${{ python_min }}.*
-        - setuptools >=61.2
+        - setuptools >=77.0
       run:
-        - if: unix
-          then:
-            - __unix
-            - pexpect >4.3
-          else:
-            - __win
-            - colorama
-        - decorator
-        - exceptiongroup
-        - ipython_pygments_lexers
-        - jedi >=0.16
-        - matplotlib-inline
-        - pickleshare
+        - __${{ noarch_platform }}
+        - ${{ "colorama >=0.4.4" if noarch_platform == "win" else "pexpect >4.3" }}
+        - decorator >=4.3.2
+        - ipython_pygments_lexers >=1.0.0
+        - jedi >=0.18.1
+        - matplotlib-inline >=0.1.5
         - prompt-toolkit >=3.0.41,<3.1.0
-        - pygments >=2.4.0
+        - pygments >=2.11.0
         - python >=${{ python_min }}
-        - stack_data
+        - stack_data >=0.6.0
         - traitlets >=5.13.0
         - typing_extensions >=4.6
     tests:
@@ -58,18 +52,15 @@ outputs:
           pip_check: true
           python_version:
             - ${{ python_min }}.*
-            - 3.13.*
+            - ${{ python_check_max }}.*
       - requirements:
           run:
             - python ${{ python_min }}.*
-            - if: win
-              then:
-                - m2-grep
         script:
           - ipython --version
           - ipython3 --version
           - ipython --help
-          - pygmentize -L | grep ipython
+          - pygmentize -L | python -c "import sys; assert 'ipython' in sys.stdin.read()"
       # TODO: unvendor tests as separate package
       - files:
           recipe:
@@ -88,16 +79,17 @@ outputs:
             # actual test deps
             - black
             - curio
-            - matplotlib-base !=3.2.0
+            - ipykernel >6.30
+            - matplotlib-base >=3.9
             - nbformat
-            - numpy >=1.23
-            - pandas
-            - pickleshare
-            - pygments
-            - pytest
-            - pytest-asyncio
-            - testpath
-            - trio
+            - numpy >=1.27
+            - packaging >=20.1.0
+            - pandas >=2.1
+            - pytest >=7.0.0
+            - pytest-asyncio >=1.0.0
+            - setuptools >=61.2
+            - testpath >=0.2
+            - trio >=0.1.0
         script:
           - if: unix
             then:
