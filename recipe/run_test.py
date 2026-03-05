@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import subprocess
 import platform
 from pathlib import Path
@@ -11,7 +13,7 @@ PYTEST_SKIPS = [
     "decorator_skip",
     "pprint_heap_allocated",
 ]
-UNLINK = []
+UNLINK: list[str] = []
 
 if LINUX:
     PYTEST_SKIPS += ["system_interrupt"]
