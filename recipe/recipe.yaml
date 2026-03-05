@@ -36,8 +36,6 @@ outputs:
         - setuptools >=80.0
       run:
         - __${{ noarch_platform }}
-        - ${{ "colorama >=0.4.4" if noarch_platform == "win" }}
-        - ${{ "pexpect >4.6" if noarch_platform == "unix" }}
         - decorator >=5.1.0
         - ipython_pygments_lexers >=1.0.0
         - jedi >=0.18.2
@@ -47,6 +45,12 @@ outputs:
         - python >=${{ python_min }}
         - stack_data >=0.6.0
         - traitlets >=5.13.0
+        - if: noarch_platform == "unix"
+          then:
+            - pexpect >4.6
+        - if: noarch_platform == "win"
+          then:
+            - colorama >=0.4.4
     tests:
       - python:
           imports: IPython
