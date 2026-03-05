@@ -3,7 +3,7 @@ About ipython-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ipython-feedstock/blob/main/LICENSE.txt)
 
-Home: https://ipython.org/
+Home: https://pypi.org/project/ipython
 
 Package license: BSD-3-Clause
 
