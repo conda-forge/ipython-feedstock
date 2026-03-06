@@ -108,7 +108,7 @@ about:
   license: BSD-3-Clause
   license_file: LICENSE
   summary: 'IPython: Productive Interactive Computing'
-  homepage: https://pypi.org/project/ipython
+  homepage: https://ipython.org
   documentation: https://ipython.readthedocs.io
   repository: https://github.com/ipython/ipython
   description: |
