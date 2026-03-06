@@ -1,5 +1,5 @@
 python_min:
-  - "3.11"
+  - "3.12"
 noarch_platform:
   - if: win
     then:

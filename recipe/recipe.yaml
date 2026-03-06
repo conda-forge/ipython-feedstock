@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "9.10.0"
+  version: "9.11.0"
   python_check_max: "3.14"
   pygments_modes: ipython ipython3 ipythonconsole ipython3console
 
@@ -12,7 +12,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-${{ version }}.tar.gz
-  sha256: cd9e656be97618a0676d058134cd44e6dc7012c0e5cb36a9ce96a8c904adaf77
+  sha256: 2a94bc4406b22ecc7e4cb95b98450f3ea493a76bec8896cda11b78d7752a6667
 
 build:
   number: 0
@@ -33,20 +33,24 @@ outputs:
       host:
         - pip
         - python ${{ python_min }}.*
-        - setuptools >=77.0
+        - setuptools >=80.0
       run:
         - __${{ noarch_platform }}
-        - ${{ "colorama >=0.4.4" if noarch_platform == "win" else "pexpect >4.3" }}
-        - decorator >=4.3.2
+        - decorator >=5.1.0
         - ipython_pygments_lexers >=1.0.0
-        - jedi >=0.18.1
-        - matplotlib-inline >=0.1.5
+        - jedi >=0.18.2
+        - matplotlib-inline >=0.1.6
         - prompt-toolkit >=3.0.41,<3.1.0
-        - pygments >=2.11.0
+        - pygments >=2.14.0
         - python >=${{ python_min }}
         - stack_data >=0.6.0
         - traitlets >=5.13.0
-        - typing_extensions >=4.6
+        - if: noarch_platform == "unix"
+          then:
+            - pexpect >4.6
+        - if: noarch_platform == "win"
+          then:
+            - colorama >=0.4.4
     tests:
       - python:
           imports: IPython
@@ -79,19 +83,20 @@ outputs:
             # coverage
             - coverage
             # actual test deps
+            - argcomplete >=3.0
             - black
             - curio
             - ipykernel >6.30
             - matplotlib-base >=3.9
             - nbformat
-            - numpy >=1.27
-            - packaging >=20.1.0
+            - numpy >=2.0
+            - packaging >=23.0.0
             - pandas >=2.1
             - pytest >=7.0.0
             - pytest-asyncio >=1.0.0
-            - setuptools >=61.2
+            - setuptools >=80.0
             - testpath >=0.2
-            - trio >=0.1.0
+            - trio >=0.22.0
         script:
           - if: noarch_platform != "win"
             then:
