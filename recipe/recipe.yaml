@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "9.12.0"
+  version: "9.10.1"
   python_check_max: "3.14"
   pygments_modes: ipython ipython3 ipythonconsole ipython3console
 
@@ -12,7 +12,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-${{ version }}.tar.gz
-  sha256: 01daa83f504b693ba523b5a407246cabde4eb4513285a3c6acaff11a66735ee4
+  sha256: e170e9b2a44312484415bdb750492699bf329233b03f2557a9692cce6466ada4
 
 build:
   number: 0
@@ -33,21 +33,21 @@ outputs:
       host:
         - pip
         - python ${{ python_min }}.*
-        - setuptools >=80.0
+        - setuptools >=77.0
       run:
         - __${{ noarch_platform }}
-        - decorator >=5.1.0
+        - decorator >=4.3.2
         - ipython_pygments_lexers >=1.0.0
-        - jedi >=0.18.2
-        - matplotlib-inline >=0.1.6
+        - jedi >=0.18.1
+        - matplotlib-inline >=0.1.5
         - prompt-toolkit >=3.0.41,<3.1.0
-        - pygments >=2.14.0
+        - pygments >=2.11.0
         - python >=${{ python_min }}
         - stack_data >=0.6.0
         - traitlets >=5.13.0
         - if: noarch_platform == "unix"
           then:
-            - pexpect >4.6
+            - pexpect >4.3
         - if: noarch_platform == "win"
           then:
             - colorama >=0.4.4
