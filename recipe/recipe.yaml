@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "9.12.0"
+  version: "9.13.0"
   python_check_max: "3.14"
   pygments_modes: ipython ipython3 ipythonconsole ipython3console
 
@@ -12,7 +12,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-${{ version }}.tar.gz
-  sha256: 01daa83f504b693ba523b5a407246cabde4eb4513285a3c6acaff11a66735ee4
+  sha256: 7e834b6afc99f020e3f05966ced34792f40267d64cb1ea9043886dab0dde5967
 
 build:
   number: 0
@@ -41,10 +41,12 @@ outputs:
         - jedi >=0.18.2
         - matplotlib-inline >=0.1.6
         - prompt-toolkit >=3.0.41,<3.1.0
+        - psutil >=7
         - pygments >=2.14.0
         - python >=${{ python_min }}
         - stack_data >=0.6.0
         - traitlets >=5.13.0
+        - typing_extensions >=4.6
         - if: noarch_platform == "unix"
           then:
             - pexpect >4.6
