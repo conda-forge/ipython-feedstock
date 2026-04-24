@@ -12,6 +12,9 @@ COV_THRESHOLD = 57
 PYTEST_SKIPS = [
     "decorator_skip",
     "pprint_heap_allocated",
+    #: bad interactions with "clean" enviroment in rattler-build 0.62
+    #: https://github.com/conda-forge/ipython-feedstock/pull/263
+    "test_dirops",
 ]
 UNLINK: list[str] = []
 
