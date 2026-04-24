@@ -21,6 +21,13 @@ UNLINK: list[str] = []
 if LINUX:
     PYTEST_SKIPS += ["system_interrupt"]
 
+if WIN:
+    PYTEST_SKIPS += [
+        #: bad interactions with "clean" enviroment in rattler-build 0.62
+        #: https://github.com/conda-forge/ipython-feedstock/pull/263
+        "(test_oinspect and test_info)",
+    ]
+
 PYTEST_ARGS = ["pytest", "-vv", "--color=yes", "--tb=long", "tests"]
 
 if len(PYTEST_SKIPS) == 1:
