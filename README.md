@@ -165,6 +165,3 @@ Feedstock Maintainers
 * [@takluyver](https://github.com/takluyver/)
 * [@trallard](https://github.com/trallard/)
 
-
-<!-- dummy commit to enable rerendering -->
-
