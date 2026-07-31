@@ -36,7 +36,6 @@ outputs:
         - setuptools >=80.0
       run:
         - __${{ noarch_platform }}
-        - decorator >=5.1.0
         - ipython_pygments_lexers >=1.0.0
         - jedi >=0.18.2
         - matplotlib-inline >=0.1.6
