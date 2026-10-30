@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "9.17.1"
+  version: "9.18.0"
   python_check_max: "3.14"
   pygments_modes: ipython ipython3 ipythonconsole ipython3console
 
@@ -12,7 +12,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/i/ipython/ipython-${{ version }}.tar.gz
-  sha256: 8919be8c27f20a6f4423145028063f6637b42a03ce57665bb12015ee1f073529
+  sha256: 93ec98e27d5ce494c962758111c7dff1ef45f9efdd55604ae70a7d4cabb3e1ea
 
 build:
   number: 0
